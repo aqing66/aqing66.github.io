@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>javaweb复习（1）——jsp</title>
+    <url>/post/215a6388.html</url>
+    <content><![CDATA[<p>在之前的小组的项目开发中发现自己的知识并不牢固，希望通过基础知识再次学习查找不足，先通过Javaweb的jsp的开发过程和Java基础并行作为起点开始学习</p>
+<a id="more"></a>
+<h2 id="jsp执行流程"><a href="#jsp执行流程" class="headerlink" title="jsp执行流程"></a>jsp执行流程</h2><p>第一次访问：客户端发出请求，服务端接收到jsp,jsp编译成Java（servlet），然后编译成.class。服务端将结果返回客户端</p>
+<ul>
+<li>过程介绍</li>
+</ul>
+<p>客户端发出请求，请求为JSP，web容器就会找出相应的servlet进行处理。<br>将servlet转成字节码文件。<br>将字节码文件加载到web容器里。<br>这时会在web容器里建立实例。<br>进行初始化。<br>通过service接受请求。<br>然后web容器会自动产生两个对象servlet和service最后进行销毁。<br><img src="https://iknow-pic.cdn.bcebos.com/1f178a82b9014a90a9e9e414a7773912b21bee40" alt="图片链接"></p>
+<p>第二次访问；未修改代码情况下直接访问.class返回客户端</p>
+<h2 id="jsp页面元素和request请求"><a href="#jsp页面元素和request请求" class="headerlink" title="jsp页面元素和request请求"></a>jsp页面元素和request请求</h2><h3 id="页面元素"><a href="#页面元素" class="headerlink" title="页面元素"></a>页面元素</h3><p> html、Java代码（脚本scriptlet）、注释、指令</p>
+<ol>
+<li>HTML代码</li>
+<li>Java代码（脚本scriptlet）</li>
+</ol>
+<ul>
+<li>全局变量、定义方法<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line">public String bookName</span><br><span class="line">public void init()&#123;</span><br><span class="line">   bookName &#x3D;&quot;java书&quot;</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+<li>局部变量、Java代码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;% </span><br><span class="line">String name &#x3D;&quot;zhangsan&quot;;</span><br><span class="line">out.print(&quot;hello&quot;+name);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+<li>输出表达式 <font color="red">结尾没有分号</font><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%&#x3D;&quot;hello&quot;+bookName%&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>指令<br>例子:page指令<br>language；jsp页面使用的脚本语言<br>import: 导入的类<br>pageEncode：jsp自身编码 jsp -&gt;java<br>contentType: 浏览器解析jsp的编码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ page  &gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+</ul>
+<ol start="4">
+<li>注释<br>HTML注释: &lt;!– – &gt;<br>Java注释: //和/*  */<br>jsp注释 &lt;%–  –%&gt;  <h3 id="get和post提交方式"><a href="#get和post提交方式" class="headerlink" title="get和post提交方式"></a>get和post提交方式</h3>get提交方式：method=“get”、地址栏、超链接（<code>&lt;a href=&quot;xx&quot;&gt;</code>）请求方式默认都是get<h3 id="get和post请求方式区别"><a href="#get和post请求方式区别" class="headerlink" title="get和post请求方式区别"></a>get和post请求方式区别</h3><blockquote>
+<p>1.get在地址栏显示提交内容，post不是显示(get的提交的内容有限大约3kb)<br>2.文件上传按时必须post(get不安全)</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="jsp-九大内置对象"><a href="#jsp-九大内置对象" class="headerlink" title="jsp 九大内置对象"></a>jsp 九大内置对象</h3><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>1.out javax.servlet.jsp.jspWriter 页面输出<br>2.request javax.servlet.http.HttpServletrequest 获取用户的请求信息<br>3.response javax.servlet.http.HttpServletResponse 服务器向客户端的回应信息<br>4.session javax.servlet.http.HttpSession 用来保存每一个用户的信息<br>5.application javax.servlet.ServletContext 表示所有用户的共享信息<br>6.config javax.servlet.ServletConfig 服务器配置信息，可以取得初始化参数<br>7.PageContext javax.servlet.jsp.PageContext JSP的页面容器<br>8.page java.lang.object)   当前JSP页面对象（相当于java中的this）<br>9.exception java.lang.Throwable 异常对象</p>
+<h4 id="详述"><a href="#详述" class="headerlink" title="详述"></a>详述</h4><h5 id="out：-输出对象，向客户端输出内容"><a href="#out：-输出对象，向客户端输出内容" class="headerlink" title="out： 输出对象，向客户端输出内容"></a>out： 输出对象，向客户端输出内容</h5><h5 id="request-请求对象；储存“客户端向服务器发送请求消息”"><a href="#request-请求对象；储存“客户端向服务器发送请求消息”" class="headerlink" title="request: 请求对象；储存“客户端向服务器发送请求消息”"></a>request: 请求对象；储存“客户端向服务器发送请求消息”</h5><blockquote>
+<p>request对象常方法</p>
+<blockquote>
+<p>String getParamete(String name) :根据请求字段名key，返回返回值value。<font color="red">k是name</font><br>String[] getParameteValues(String name):f返回多个值（checkbox)<br>void setCharacterEncoding(“utf-8”):请求编码格式<br>getRequestDispathcher(“jsp”).forward(requset,response):请求转发<br>getServerContext():获取项目的ServletContext对象</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>requset的编码格式异常问题  </p>
+<blockquote>
+<p>get方式有问题的话更改Tomcat到8以上<br>post方式有问题添加requset.setCharacterEncoding(“utf-8”)在请求的头部</p>
+</blockquote>
+</blockquote>
+<h5 id="response：响应对象；"><a href="#response：响应对象；" class="headerlink" title="response：响应对象；"></a>response：响应对象；</h5><blockquote>
+<p>提供方法</p>
+<blockquote>
+<p>void addCookie(Cookiie cookie):服务端向客户端增加cookie对象<br>void senredirect（”.jsp“） throw IOException:页面跳转重定向<br>void setContentType（string type）；设置服务器响应的编码（设置服务器的ContentType类型）</p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p>关于重定向和请求转发</p>
+<blockquote>
+<p>重定向有response提供，但是数据丢失，页面地址改变<br>两次请求两次响应<br>请求转发是由request提供，数据不丢失，页面地址不变（保留转发前的地址）<br>一次请求一次响应</p>
+</blockquote>
+</blockquote>
+<h5 id="session"><a href="#session" class="headerlink" title="session"></a>session</h5><blockquote>
+<p>方法 </p>
+<blockquote>
+<p>String getId() :获取sessionId<br>boolean isNew() :判断是否是 新用户（第一次访问）<br>void invalidate():使session失效  （退出登录、注销）<br>void setAttribute()<br>Object getAttribute();<br>void setMaxInactiveInterval(秒) ：设置最大有效 非活动时间<br>int getMaxInactiveInterval():获取最大有效 非活动时间  </p>
+</blockquote>
+</blockquote>
+<p><font color="blue">  <em>首先了解session之前需要先了解cookie,cookie不是内置对象</em> </font></p>
+<blockquote>
+<p>关于cookie</p>
+<blockquote>
+<p>cookie包含键值对<br>由Java内部类提供的方法</p>
+<blockquote>
+<p>publice Cookie(String name,String value)<br>String getname()<br>String getValue()<br>void setMaxvalue（intexpire）最大有效期（秒）<br>cookie的使用<br>客户端准备cookieresponse.addCookie（Cookie cookie）<br>页面跳转（转发重定向都可）<br>客户端获取cookie：request.getCookie(); </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p><font color="red"> cookie不能取某一个单独对象，只能一次性全部获取</font>  </p>
+</blockquote>
+</blockquote>
+</blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>客户端第一次请求服务端时，（jsessionid-sessionid）服务端会产生一个session对象（用于保存该客户的信息）；<br>并且每个session对象 都会有一个唯一的 sessionId( 用于区分其他session);<br>服务端由会 产生一个cookie，并且 该cookie的name=JSESSIONID ,value=服务端sessionId的值；<br>然后 服务端会在 响应客户端的同时 将该cookie发送给客户端，至此 客户端就有了 一个cookie(JSESSIONID)；<br>因此，客户端的cookie就可以和服务端的session一一对应（JSESSIONID - sessionID）</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li><p>session机制<br>客户端第一次请求服务端时，（jsessionid-sessionid）服务端会产生一个session对象（用于保存该客户的信息）；<br>并且每个session对象 都会有一个唯一的 sessionId( 用于区分其他session);<br>服务端由会 产生一个cookie，并且 该cookie的name=JSESSIONID ,value=服务端sessionId的值；<br>然后 服务端会在 响应客户端的同时 将该cookie发送给客户端，至此 客户端就有了 一个cookie(JSESSIONID)；<br>因此，客户端的cookie就可以和服务端的session一一对应（JSESSIONID - sessionID）<br>客户端第二/n次请求服务端时:服务端会先用客户端cookie种的JSESSIONID  去服务端的session中匹配sessionid,如果匹配成功（cookie  jsessionid和sesion sessionid），说明此用户 不是第一次访问,无需登录；</p>
+</li>
+<li><p>session与cookie<br>seesion 服务端产生 ，内置对象；<br>cookie 客户端产生，不是内置对象（服务器生成，发送给客户端保存）；</p>
+</li>
+</ul>
+<p><font color="red">cookie和session区别</font></p>
+<table>
+<thead>
+<tr>
+<th>区别点</th>
+<th>session</th>
+<th>cookie</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>保存位置</td>
+<td>服务端</td>
+<td>客户端</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>较安全</td>
+<td>较不安全</td>
+</tr>
+<tr>
+<td>保存的内容</td>
+<td>Object</td>
+<td>String</td>
+</tr>
+</tbody></table>
+<h5 id="appliation-全局对象"><a href="#appliation-全局对象" class="headerlink" title="appliation 全局对象"></a>appliation 全局对象</h5><p>String getContextPath()    虚拟路径<br>String getRealPath(String name): 绝对路径（虚拟路径 相对的绝对路径）</p>
+<h4 id="四种范围对象（小-gt-大）"><a href="#四种范围对象（小-gt-大）" class="headerlink" title="四种范围对象（小-&gt;大）"></a>四种范围对象（小-&gt;大）</h4><p>pageContext  JSP页面容器   （page对象）； 当前页面有效<br>request   请求对象             同一次请求有效<br>session   会话对象            同一次会话有效<br>appliation 全局对象            全局有效（整个项目有效）</p>
+<blockquote>
+<p>以上4个对象共有的方法：</p>
+<blockquote>
+<p>Object getAttribute(String name):根据属性名，或者属性值<br>void setAttribute(String name,Object obj) :设置属性值（新增，修改）<br>setAttribute(“a”,”b”) ;//如果a对象之前不存在，则新建一个a对象 ；<br>                                  如果a之前已经存在，则将a的值改为b<br>void removeAttribute(String name)：根据属性名，删除对象</p>
+</blockquote>
+</blockquote>
+<p>a.pageContext 当前页面有效 (页面跳转后无效)<br>b.request   同一次请求有效；其他请求无效 （请求转发后有效；重定向后无效）<br>c.session  同一次会话有效  （无论怎么跳转，都有效；关闭/切换浏览器后无效 ； 从 登陆-&gt;退出 之间 全部有效）<br>d.application 全局变量；整个项目运行期间 都有效 (切换浏览器 仍然有效)；关闭服务、其他项目 无效<br>-&gt;多个项目共享、重启后仍然有效 ：JNDI<br>1.以上的4个范围对象，通过 setAttribute()复制，通过getAttribute()取值；<br>2.以上范围对象，尽量使用最小的范围。因为 对象的范围越大，造成的性能损耗越大。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习Hexo搭建博客</title>
+    <url>/post/4478e790.html</url>
+    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
+<a id="more"></a>
+<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
+<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
+<li>首先安装cnpm</li>
+</ul>
+<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
+<ul>
+<li>下载hexo框架</li>
+</ul>
+<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
+<ul>
+<li>建立blog文件夹</li>
+</ul>
+<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
+<ul>
+<li>尝试打开博客</li>
+</ul>
+<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
+<hr>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
+<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
+<p>将公钥写到github的ssh setting </p>
+<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
+<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
+<hr>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
+<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
+<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
+<hr>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>新的尝试</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+</search>
