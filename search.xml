@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>javaweb复习（2）</title>
+    <url>/post/ff269a0a.html</url>
+    <content><![CDATA[<p>javaweb的第二段的复习，由于家里事致使每天的复习量很少，一天一点，也要加油复习呀！</p>
+<a id="more"></a>
+<h2 id="1-JDBC-Java-DataBase-Connectivity"><a href="#1-JDBC-Java-DataBase-Connectivity" class="headerlink" title="1.JDBC:Java DataBase Connectivity"></a>1.JDBC:Java DataBase Connectivity</h2><p>可以为多种关系型数据库DBMS 提供统一的访问方式，用Java来操作数据库</p>
+<h2 id="2-JDBC-API-主要功能："><a href="#2-JDBC-API-主要功能：" class="headerlink" title="2.JDBC API 主要功能："></a>2.JDBC API 主要功能：</h2><h3 id="1-三件事，具体是通过以下类-接口实现："><a href="#1-三件事，具体是通过以下类-接口实现：" class="headerlink" title="1. 三件事，具体是通过以下类/接口实现："></a>1. 三件事，具体是通过以下类/接口实现：</h3><p>DriverManager ： 管理jdbc驱动<br>Connection： 连接（通过DriverManager产生）<br>Statement（PreparedStatement） ：增删改查  （通过Connection产生 ）<br>CallableStatement  ： 调用数据库中的 存储过程/存储函数  （通过Connection产生 ）<br>Result ：返回的结果集  （上面的Statement等产生 ）<br><img src="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg" alt="jdbc架构"></p>
+<h3 id="2-相关类的解释"><a href="#2-相关类的解释" class="headerlink" title="2. 相关类的解释"></a>2. 相关类的解释</h3><p>Connection产生操作数据库的对象：<br>Connection产生Statement对象：createStatement()<br>Connection产生PreparedStatement对象：prepareStatement()<br>Connection产生CallableStatement对象：prepareCall();  </p>
+<p>Statement操作数据库：<br>增删改：executeUpdate()<br>查询：executeQuery();</p>
+<p>ResultSet：保存结果集 select * from xxx<br>next():光标下移，判断是否有下一条数据；true/false<br>previous():  true/false<br>getXxx(字段名|位置):获取具体的字段值  </p>
+<p>PreparedStatement操作数据库：<br>public interface PreparedStatement extends Statement<br>因此有<br>增删改：executeUpdate()<br>查询：executeQuery();<br>–此外<br>赋值操作 setXxx();</p>
+<h3 id="3-PreparedStatement与Statement在使用时的区别："><a href="#3-PreparedStatement与Statement在使用时的区别：" class="headerlink" title="3. PreparedStatement与Statement在使用时的区别："></a>3. PreparedStatement与Statement在使用时的区别：</h3><p>1.Statement:<br>sql<br>executeUpdate(sql)  </p>
+<p>2.PreparedStatement:<br>sql(可能存在占位符?)<br>在创建PreparedStatement 对象时，将sql预编译 prepareStatement(sql)<br>executeUpdate()<br>setXxx()替换占位符？ </p>
+<p>PreparedStatement的优势<br>1.编码更加简便（避免了字符串的拼接）<br>2.提高性能(因为 有预编译操作，预编译只需要执行一次)<br>3.安全（可以有效防止sql注入）</p>
+<h3 id="4-关于SQL注入问题"><a href="#4-关于SQL注入问题" class="headerlink" title="4. 关于SQL注入问题"></a>4. 关于SQL注入问题</h3><p>利用“符号将查询的字段结束并在后面加上恒等式<br>例如输入  用户名：任意值 ‘ or 1=1 - -<br>       密码：任意值</p>
+<h3 id="5-jdbc总结（模板）："><a href="#5-jdbc总结（模板）：" class="headerlink" title="5. jdbc总结（模板）："></a>5. jdbc总结（模板）：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">a.导入驱动包、加载具体驱动类Class.forName(&quot;具体驱动类&quot;);  </span><br><span class="line">b.与数据库建立连接connection &#x3D; DriverManager.getConnection(...);  </span><br><span class="line">c.通过connection，获取操作数据库的对象  （Statement\preparedStatement\callablestatement）</span><br><span class="line">stmt &#x3D; connection.createStatement();  </span><br><span class="line">d.(查询)处理结果集rs &#x3D; pstmt.executeQuery()  </span><br><span class="line">while(rs.next())&#123; rs.getXxx(..) ;&#125;   </span><br><span class="line">&#125;catch(ClassNotFoundException e  )  </span><br><span class="line">&#123; ...&#125;  </span><br><span class="line">catch(SQLException e)   </span><br><span class="line">&#123;... </span><br><span class="line">&#125;</span><br><span class="line">catch(Exception e)</span><br><span class="line">&#123;...</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;打开顺序，与关闭顺序相反</span><br><span class="line">	if(rs!&#x3D;null)rs.close()</span><br><span class="line">	if(stmt!&#x3D;null) stmt.close();</span><br><span class="line">	if(connection!&#x3D;null)connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--jdbc中，除了Class.forName() 抛出ClassNotFoundException，其余方法全部抛SQLException</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-CallableStatement-调用-存储过程、存储函数"><a href="#6-CallableStatement-调用-存储过程、存储函数" class="headerlink" title="6. CallableStatement:调用 存储过程、存储函数"></a>6. CallableStatement:调用 存储过程、存储函数</h3><p>connection.prepareCall(参数：存储过程或存储函数名)<br>参数格式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">存储过程（无返回值return，用out参数替代）：  </span><br><span class="line">	&#123; call  存储过程名(参数列表) &#125;  </span><br><span class="line">存储函数（有返回值return）：  </span><br><span class="line">	&#123; ? &#x3D; call  存储函数名(参数列表) &#125;</span><br></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create or replace procedure addTwoNum ( num1  in number,num2  in number,result out number )  -- 1 + 2 -&gt;3</span><br><span class="line">as</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
+
+
+<p>强调：<br>如果通过sqlplus 访问数据库，只需要开启：OracleServiceSID<br>通过其他程序访问数据（sqldevelop、navicate、JDBC），需要开启：OracleServiceSID、XxxListener</p>
+<p>JDBC调用存储过程的步骤：<br>a.产生 调用存储过程的对象（CallableStatement） cstmt =     connection.prepareCall(   “…” ) ;<br>b.通过setXxx()处理 输出参数值 cstmt.setInt(1, 30);<br>c.通过 registerOutParameter(…)处理输出参数类型<br>d.cstmt.execute()执行<br>e.接受 输出值（返回值）getXxx()  </p>
+<p>调存储函数：  </p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create or replace function addTwoNumfunction ( num1  in number,num2  in number)  -- 1 + 2 </span><br><span class="line">return number</span><br><span class="line">as</span><br><span class="line">	result number ;	</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">	return result ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
+<p>JDBC调用存储函数：与调存储过程的区别：<br>在调用时，注意参数：”{? =  call addTwoNumfunction    (?,?) }”</p>
+<h3 id="7-处理CLOB-BLOB类型"><a href="#7-处理CLOB-BLOB类型" class="headerlink" title="7. 处理CLOB/BLOB类型"></a>7. 处理CLOB/BLOB类型</h3><p>处理稍大型数据：  </p>
+<p>a.存储路径    E:\JDK_API_zh_CN.CHM<br>    通过JDBC存储文件路径，然后 根据IO操作处理<br>    例如：JDBC将 E:\JDK_API_zh_CN.CHM 文件 以字符串形式  “E:\JDK_API_zh_CN.CHM”存储到数据库中<br>        获取：1.获取该路径“E:\JDK_API_zh_CN.CHM”  2.IO      </p>
+<p>b.<br>    CLOB：大文本数据 （小说-&gt;数据）<br>    BLOB：二进制  </p>
+<p>clob:大文本数据   字符流 Reader Writer  </p>
+<p>存<br>1.先通过pstmt 的? 代替小说内容 （占位符）<br>2.再通过pstmt.setCharacterStream(2, reader,  (int)file.length());  将上一步的？替换为 小说流， 注意第三个参数需要是 Int类型</p>
+<p>取：<br>1.通过Reader reader = rs.getCharacterStream(“NOVEL”) ; 将cloc类型的数据  保存到Reader对象中<br>2.将Reader通过Writer输出即可。</p>
+<p>blob:二进制  字节流 InputStream OutputStream<br>与CLOB步骤基本一致，区别：setBinaryStream(…)  getBinaryStream(…)   </p>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习Hexo搭建博客</title>
+    <url>/post/4478e790.html</url>
+    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
+<a id="more"></a>
+<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
+<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
+<li>首先安装cnpm</li>
+</ul>
+<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
+<ul>
+<li>下载hexo框架</li>
+</ul>
+<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
+<ul>
+<li>建立blog文件夹</li>
+</ul>
+<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
+<ul>
+<li>尝试打开博客</li>
+</ul>
+<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
+<hr>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
+<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
+<p>将公钥写到github的ssh setting </p>
+<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
+<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
+<hr>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
+<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
+<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
+<hr>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>新的尝试</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>javaweb复习（1）——jsp</title>
     <url>/post/215a6388.html</url>
     <content><![CDATA[<p>在之前的小组的项目开发中发现自己的知识并不牢固，希望通过基础知识再次学习查找不足，先通过Javaweb的jsp的开发过程和Java基础并行作为起点开始学习</p>
@@ -134,53 +225,6 @@
       </categories>
       <tags>
         <tag>jsp</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习Hexo搭建博客</title>
-    <url>/post/4478e790.html</url>
-    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
-<a id="more"></a>
-<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
-<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
-<li>首先安装cnpm</li>
-</ul>
-<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
-<ul>
-<li>下载hexo框架</li>
-</ul>
-<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
-<ul>
-<li>建立blog文件夹</li>
-</ul>
-<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
-<ul>
-<li>尝试打开博客</li>
-</ul>
-<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
-<hr>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
-<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
-<p>将公钥写到github的ssh setting </p>
-<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
-<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
-<hr>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
-<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
-<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
-<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
-<hr>
-]]></content>
-      <categories>
-        <category>学习过程</category>
-        <category>新的尝试</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
