@@ -45,53 +45,6 @@
       </tags>
   </entry>
   <entry>
-    <title>学习Hexo搭建博客</title>
-    <url>/post/4478e790.html</url>
-    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
-<a id="more"></a>
-<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
-<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
-<li>首先安装cnpm</li>
-</ul>
-<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
-<ul>
-<li>下载hexo框架</li>
-</ul>
-<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
-<ul>
-<li>建立blog文件夹</li>
-</ul>
-<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
-<ul>
-<li>尝试打开博客</li>
-</ul>
-<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
-<hr>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
-<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
-<p>将公钥写到github的ssh setting </p>
-<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
-<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
-<hr>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
-<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
-<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
-<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
-<hr>
-]]></content>
-      <categories>
-        <category>学习过程</category>
-        <category>新的尝试</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>javaweb复习（1）——jsp</title>
     <url>/post/215a6388.html</url>
     <content><![CDATA[<p>在之前的小组的项目开发中发现自己的知识并不牢固，希望通过基础知识再次学习查找不足，先通过Javaweb的jsp的开发过程和Java基础并行作为起点开始学习</p>
@@ -225,6 +178,105 @@
       </categories>
       <tags>
         <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javaweb复习（3）</title>
+    <url>/post/479afd6f.html</url>
+    <content><![CDATA[<p>servlet分为2.5和3.0</p>
+<a id="more"></a>
+<h2 id="servlet-的基本内容"><a href="#servlet-的基本内容" class="headerlink" title="servlet 的基本内容"></a>servlet 的基本内容</h2><ol>
+<li><p>Servlet本质是Java类，实现servlet必须符合一定的规范：  </p>
+<blockquote>
+<p> a.必须继承  javax.servlet.http.HttpServlet<br>b.重写其中的 doGet()或doPost()方法</p>
+<blockquote>
+<p>doGet()： 接受 并处 所有get提交方式的请求<br>doPost()：接受 并处 所有post提交方式的请求</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>Servlet要想使用，必须配置</p>
+</li>
+</ol>
+<p>Serlvet2.5：web.xml<br>Servle3.0： @WebServlet</p>
+<ol start="3">
+<li>项目根目录：WebContent、src（所有的构建路径）  </li>
+</ol>
+<p>例如：<br>WebContent中有一个文件index.jsp<br>src中有一个Servlet.java    </p>
+<p>如果: index.jsp中请求 <code>&lt;a href=&quot;abc&quot;&gt;...&lt;/a&gt;</code> ，则寻找范围：既会在src根目录中找  也会在WebContent根目录中找 (没有先后顺序)</p>
+<p>如果：index.jsp中请求<code>&lt;a href=&quot;a/abc&quot;&gt;&lt;/a&gt;</code>，寻找范围：先在src或WebContent中找a目录，然后再在a目录中找abc</p>
+<p>web.xml中的 /:代表<font color="red">项目根路径 </font><br><code>http://localhost:8888/Servlet25Project/</code><br>jsp中的/: <font color="red">服务器根路径 </font><br><code>http://localhost:8888/</code></p>
+<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">  &lt;servlet-name&gt; 相同名字 &lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;servlet-class&gt; servlet在项目中的地址 &lt;&#x2F;servlet-class&gt;</span><br><span class="line"> &lt;&#x2F;servlet&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">   &lt;servlet-name&gt; 相同名字 &lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;url-pattern&gt; 路径名 &lt;&#x2F;url-pattern&gt;</span><br><span class="line"> &lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>请求 -&gt;<code>&lt;url-pattern&gt;</code> -&gt; 根据<code>&lt;servlet-mapping&gt;</code>中的<code>&lt;servlet-name&gt;</code>去匹配  <code>&lt;servlet&gt;</code>中的<code>&lt;servlet-name&gt;</code>，然后寻找到<code>&lt;servlet-class&gt;</code>，求中将请求交由该<code>&lt;servlet-class&gt;</code>执行。  </p>
+<p>Servlet3.0不需要在web.xml中配置，但 需要在 Servlet类的定义处之上编写 注解@WebServlet(“url-pattern的值”)<br>匹配流程：  请求地址 与@WebServlet中的值 进行匹配，如果匹配成功 ，则说明 请求的就是该注解所对应的类</p>
+<h2 id="Servlet生命周期：5个阶段"><a href="#Servlet生命周期：5个阶段" class="headerlink" title="Servlet生命周期：5个阶段"></a>Servlet生命周期：5个阶段</h2><p>加载<br>初始化： init()  ，该方法会在 Servlet被加载并实例化的以后 执行<br>服务  ：service() -&gt;doGet()  doPost<br>销毁  ：destroy()，  Servlet被系统回收时执行<br>卸载</p>
+<p>init():<br>a.默认第一次访问 Servlet时会被执行 <font color="red">（只执行这一次）</font><br>b.可以修改为 Tomcat启动时自动执行  </p>
+<p>i.Servlet2.5：  web.xml </p>
+<pre><code>&lt;servlet&gt;  
+    ...   
+      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  
+ &lt;/servlet&gt;</code></pre><p>其中的“1”代表第一个。数字表示优先级</p>
+<p>ii.Servlet3.0<br><code>@WebServlet( value=&quot;/WelcomeServlet&quot; ,loadOnStartup=1  )</code></p>
+<p>service() -&gt;doGet()  doPost ：调用几次，则执行几次<br>destroy()：关闭tomcat服务时，执行一次<br>5 Servlet API ： 由两个软件包组成： 对应于HTTP协议的软件包、对应于除了HTTP协议以外的其他软件包<br>即Servlet  API可以适用于 任何 通信协议。<br>我们学习的Servlet,是位于javax.servlet.http包中的类和接口，是基础HTTP协议。</p>
+<h2 id="Servlet继承关系"><a href="#Servlet继承关系" class="headerlink" title="Servlet继承关系"></a>Servlet继承关系</h2><p><img src="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg" alt="Servlet继承关系"></p>
+<p>ServletConfig:接口<br>ServletContext getServletContext():获取Servlet上下文对象   application<br>String  getInitParameter(String name):在<font color="red">当前Servlet范围内</font>，获取名为name的参数值（初始化参数）</p>
+<p>a.ServletContext中的常见方法(application)：<br>getContextPath():相对路径<br>getRealPath()：绝对路径<br>setAttribute() 、getAttribute()<br>—&gt; String getInitParameter(String name);在<font color="red">当前Web容器范围内</font>，获取名为name的参数值（初始化参数）</p>
+<p>servlet 2.5的方式<br>整个web容器:<code>&lt;context-param&gt;&lt;/context-param&gt;</code>中写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>当前servlet<code>&lt;init-param&gt;</code>写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>Servlet3.0方式 给当前Servlet设置初始值：<br>@WebServlet( …. , initParams= {@WebInitParam(name=”serveltparaname30”,value=”servletparavalue30”)   }    )<br>注意，此注解只 隶属于某一个具体的Servlet ，因此无法为 整个web容器设置初始化参数 （如果要通过3.0方式设置 web容器的初始化参数，仍然需要在web.xml中设置）</p>
+<h2 id="关于继承关系"><a href="#关于继承关系" class="headerlink" title="关于继承关系"></a>关于继承关系</h2><p>httpservlet是servlet的http的实现，出了http还有非http，所以引用的类不一样。genericservlet是对servlet的简单实现和空实现</p>
+<p>HttpServletRequest中的方法：(同request)，例如setAttrite()、getCookies()、getMethod()<br>HttpServletResponse中的方法：同response</p>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习Hexo搭建博客</title>
+    <url>/post/4478e790.html</url>
+    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
+<a id="more"></a>
+<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
+<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
+<li>首先安装cnpm</li>
+</ul>
+<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
+<ul>
+<li>下载hexo框架</li>
+</ul>
+<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
+<ul>
+<li>建立blog文件夹</li>
+</ul>
+<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
+<ul>
+<li>尝试打开博客</li>
+</ul>
+<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
+<hr>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
+<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
+<p>将公钥写到github的ssh setting </p>
+<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
+<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
+<hr>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
+<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
+<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
+<hr>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>新的尝试</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
