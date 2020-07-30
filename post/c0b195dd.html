@@ -20,21 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="servlet分为2.5和3.0">
+  <meta name="description" content="过滤器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="javaweb复习（3）">
-<meta property="og:url" content="http://yoursite.com/post/479afd6f.html">
+<meta property="og:title" content="Javaweb复习（4）">
+<meta property="og:url" content="http://yoursite.com/post/c0b195dd.html">
 <meta property="og:site_name" content="阿清的博客">
-<meta property="og:description" content="servlet分为2.5和3.0">
-<meta property="og:image" content="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg">
-<meta property="article:published_time" content="2020-07-26T09:38:42.000Z">
-<meta property="article:modified_time" content="2020-07-27T01:30:54.331Z">
+<meta property="og:description" content="过滤器">
+<meta property="og:image" content="https://img-blog.csdn.net/20180730175152255?watermark%252F2%252Ftext%252FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%253D%253D%252Ffont%252F5a6L5L2T%252Ffontsize%252F400%252Ffill%252FI0JBQkFCMA%253D%253D%252Fdissolve%252F70">
+<meta property="article:published_time" content="2020-07-28T00:18:11.000Z">
+<meta property="article:modified_time" content="2020-07-29T09:20:36.733Z">
 <meta property="article:author" content="阿清">
-<meta property="article:tag" content="servlet">
+<meta property="article:tag" content="过滤器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg">
+<meta name="twitter:image" content="https://img-blog.csdn.net/20180730175152255?watermark%252F2%252Ftext%252FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%253D%253D%252Ffont%252F5a6L5L2T%252Ffontsize%252F400%252Ffill%252FI0JBQkFCMA%253D%253D%252Fdissolve%252F70">
 
-<link rel="canonical" href="http://yoursite.com/post/479afd6f.html">
+<link rel="canonical" href="http://yoursite.com/post/c0b195dd.html">
 
 
 <script class="page-configurations">
@@ -47,7 +47,7 @@
   };
 </script>
 
-  <title>javaweb复习（3） | 阿清的博客</title>
+  <title>Javaweb复习（4） | 阿清的博客</title>
   
 
 
@@ -204,7 +204,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#servlet-的基本内容"><span class="nav-number">1.</span> <span class="nav-text">servlet 的基本内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet流程："><span class="nav-number">2.</span> <span class="nav-text">Servlet流程：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet生命周期：5个阶段"><span class="nav-number">3.</span> <span class="nav-text">Servlet生命周期：5个阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet继承关系"><span class="nav-number">4.</span> <span class="nav-text">Servlet继承关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于继承关系"><span class="nav-number">5.</span> <span class="nav-text">关于继承关系</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器："><span class="nav-number">1.</span> <span class="nav-text">过滤器：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">2.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器的使用"><span class="nav-number">3.</span> <span class="nav-text">过滤器的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#filter映射"><span class="nav-number">4.</span> <span class="nav-text">filter映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符"><span class="nav-number">5.</span> <span class="nav-text">通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤器链"><span class="nav-number">6.</span> <span class="nav-text">过滤器链</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -278,7 +278,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/479afd6f.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/c0b195dd.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
@@ -291,7 +291,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          javaweb复习（3）
+          Javaweb复习（4）
         </h1>
 
         <div class="post-meta">
@@ -301,14 +301,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-26 17:38:42" itemprop="dateCreated datePublished" datetime="2020-07-26T17:38:42+08:00">2020-07-26</time>
+              <time title="创建时间：2020-07-28 08:18:11" itemprop="dateCreated datePublished" datetime="2020-07-28T08:18:11+08:00">2020-07-28</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-27 09:30:54" itemprop="dateModified" datetime="2020-07-27T09:30:54+08:00">2020-07-27</time>
+                <time title="修改时间：2020-07-29 17:20:36" itemprop="dateModified" datetime="2020-07-29T17:20:36+08:00">2020-07-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -335,46 +335,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>servlet分为2.5和3.0</p>
+        <p>过滤器</p>
 <a id="more"></a>
-<h2 id="servlet-的基本内容"><a href="#servlet-的基本内容" class="headerlink" title="servlet 的基本内容"></a>servlet 的基本内容</h2><ol>
-<li><p>Servlet本质是Java类，实现servlet必须符合一定的规范：  </p>
-<blockquote>
-<p> a.必须继承  javax.servlet.http.HttpServlet<br>b.重写其中的 doGet()或doPost()方法</p>
-<blockquote>
-<p>doGet()： 接受 并处 所有get提交方式的请求<br>doPost()：接受 并处 所有post提交方式的请求</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>Servlet要想使用，必须配置</p>
-</li>
-</ol>
-<p>Serlvet2.5：web.xml<br>Servle3.0： @WebServlet</p>
-<ol start="3">
-<li>项目根目录：WebContent、src（所有的构建路径）  </li>
-</ol>
-<p>例如：<br>WebContent中有一个文件index.jsp<br>src中有一个Servlet.java    </p>
-<p>如果: index.jsp中请求 <code>&lt;a href=&quot;abc&quot;&gt;...&lt;/a&gt;</code> ，则寻找范围：既会在src根目录中找  也会在WebContent根目录中找 (没有先后顺序)</p>
-<p>如果：index.jsp中请求<code>&lt;a href=&quot;a/abc&quot;&gt;&lt;/a&gt;</code>，寻找范围：先在src或WebContent中找a目录，然后再在a目录中找abc</p>
-<p>web.xml中的 /:代表<font color="red">项目根路径 </font><br><code>http://localhost:8888/Servlet25Project/</code><br>jsp中的/: <font color="red">服务器根路径 </font><br><code>http://localhost:8888/</code></p>
-<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span> servlet在项目中的地址 <span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span> 路径名 <span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>请求 -&gt;<code>&lt;url-pattern&gt;</code> -&gt; 根据<code>&lt;servlet-mapping&gt;</code>中的<code>&lt;servlet-name&gt;</code>去匹配  <code>&lt;servlet&gt;</code>中的<code>&lt;servlet-name&gt;</code>，然后寻找到<code>&lt;servlet-class&gt;</code>，求中将请求交由该<code>&lt;servlet-class&gt;</code>执行。  </p>
-<p>Servlet3.0不需要在web.xml中配置，但 需要在 Servlet类的定义处之上编写 注解@WebServlet(“url-pattern的值”)<br>匹配流程：  请求地址 与@WebServlet中的值 进行匹配，如果匹配成功 ，则说明 请求的就是该注解所对应的类</p>
-<h2 id="Servlet生命周期：5个阶段"><a href="#Servlet生命周期：5个阶段" class="headerlink" title="Servlet生命周期：5个阶段"></a>Servlet生命周期：5个阶段</h2><p>加载<br>初始化： init()  ，该方法会在 Servlet被加载并实例化的以后 执行<br>服务  ：service() -&gt;doGet()  doPost<br>销毁  ：destroy()，  Servlet被系统回收时执行<br>卸载</p>
-<p>init():<br>a.默认第一次访问 Servlet时会被执行 <font color="red">（只执行这一次）</font><br>b.可以修改为 Tomcat启动时自动执行  </p>
-<p>i.Servlet2.5：  web.xml </p>
-<pre><code>&lt;servlet&gt;  
-    ...   
-      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  
- &lt;/servlet&gt;</code></pre><p>其中的“1”代表第一个。数字表示优先级</p>
-<p>ii.Servlet3.0<br><code>@WebServlet( value=&quot;/WelcomeServlet&quot; ,loadOnStartup=1  )</code></p>
-<p>service() -&gt;doGet()  doPost ：调用几次，则执行几次<br>destroy()：关闭tomcat服务时，执行一次<br>5 Servlet API ： 由两个软件包组成： 对应于HTTP协议的软件包、对应于除了HTTP协议以外的其他软件包<br>即Servlet  API可以适用于 任何 通信协议。<br>我们学习的Servlet,是位于javax.servlet.http包中的类和接口，是基础HTTP协议。</p>
-<h2 id="Servlet继承关系"><a href="#Servlet继承关系" class="headerlink" title="Servlet继承关系"></a>Servlet继承关系</h2><p><img src="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg" alt="Servlet继承关系"></p>
-<p>ServletConfig:接口<br>ServletContext getServletContext():获取Servlet上下文对象   application<br>String  getInitParameter(String name):在<font color="red">当前Servlet范围内</font>，获取名为name的参数值（初始化参数）</p>
-<p>a.ServletContext中的常见方法(application)：<br>getContextPath():相对路径<br>getRealPath()：绝对路径<br>setAttribute() 、getAttribute()<br>—&gt; String getInitParameter(String name);在<font color="red">当前Web容器范围内</font>，获取名为name的参数值（初始化参数）</p>
-<p>servlet 2.5的方式<br>整个web容器:<code>&lt;context-param&gt;&lt;/context-param&gt;</code>中写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>当前servlet<code>&lt;init-param&gt;</code>写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>Servlet3.0方式 给当前Servlet设置初始值：<br>@WebServlet( …. , initParams= {@WebInitParam(name=”serveltparaname30”,value=”servletparavalue30”)   }    )<br>注意，此注解只 隶属于某一个具体的Servlet ，因此无法为 整个web容器设置初始化参数 （如果要通过3.0方式设置 web容器的初始化参数，仍然需要在web.xml中设置）</p>
-<h2 id="关于继承关系"><a href="#关于继承关系" class="headerlink" title="关于继承关系"></a>关于继承关系</h2><p>httpservlet是servlet的http的实现，出了http还有非http，所以引用的类不一样。genericservlet是对servlet的简单实现和空实现</p>
-<p>HttpServletRequest中的方法：(同request)，例如setAttrite()、getCookies()、getMethod()<br>HttpServletResponse中的方法：同response</p>
+<h2 id="过滤器："><a href="#过滤器：" class="headerlink" title="过滤器："></a>过滤器：</h2><p>过滤器实际上就是对web资源进行拦截，做一些处理后再交给下一个过滤器或servlet处理<br>通常都是用来拦截request进行处理的，也可以对返回的response进行拦截处理<br>(分为两部分一部分为拦截请求，另一部分为放行）</p>
+<p><img src="https://img-blog.csdn.net/20180730175152255?watermark%2F2%2Ftext%2FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%3D%3D%2Ffont%2F5a6L5L2T%2Ffontsize%2F400%2Ffill%2FI0JBQkFCMA%3D%3D%2Fdissolve%2F70" alt="过滤器示意图 "> </p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>自动登录<br>统一设置编码格式<br>访问权限控制<br>敏感字符过滤等  </p>
+<h2 id="过滤器的使用"><a href="#过滤器的使用" class="headerlink" title="过滤器的使用"></a>过滤器的使用</h2><p>首先实现一个Filter接口<br>init()、destroy() 的原理、执行时机 同Servlet<br>配置过滤器，类似servlet<br>通过doFilter()处理拦截，并且通过chain.doFilter(request, response);放行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharsetFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*销毁时调用*/</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理*/</span></span><br><span class="line">       </span><br><span class="line">        chain.doFilter(req, resp);<span class="comment">//交给下一个过滤器或servlet处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="filter映射"><a href="#filter映射" class="headerlink" title="filter映射"></a>filter映射</h2><p>只拦截 访问MyServlet的请求<br><code>&lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;</code><br>拦截一切请求（每一次访问 都会被拦截）<br><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code></p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>dispatcher请求方式：<br>REQUEST：拦截HTTP请求 get post<br>FORWARD：只拦截 通过 请求转发方式的请求<br>INCLUDE:只拦截拦截通过 request.getRequestDispatcher(“”).include()  、通过&lt;jsp:include page=”…” /&gt;此种方式发出的请求<br>ERROR：只拦截<error-page>发出的请求</p>
+<p>过滤器中doFilter方法参数：ServletRequest<br>在Servlet中的方法参数：HttpServletRequest</p>
+<h2 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h2><p>可以配置多个过滤器，过滤器的先后顺序 是由 <code>&lt;filter-mapping&gt;</code>的位置决定<br>具体的可学习 <a href="https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912" target="_blank" rel="noopener">https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912</a></p>
 
     </div>
 
@@ -404,7 +375,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/servlet/" rel="tag"><i class="fa fa-tag"></i> servlet</a>
+              <a href="/tags/%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="tag"><i class="fa fa-tag"></i> 过滤器</a>
           </div>
 
         
@@ -413,12 +384,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/post/ff269a0a.html" rel="prev" title="javaweb复习（2）">
-      <i class="fa fa-chevron-left"></i> javaweb复习（2）
+    <a href="/post/782229f1.html" rel="prev" title="java复习(1)">
+      <i class="fa fa-chevron-left"></i> java复习(1)
     </a></div>
       <div class="post-nav-item">
-    <a href="/post/782229f1.html" rel="next" title="java复习(1)">
-      java复习(1) <i class="fa fa-chevron-right"></i>
+    <a href="/post/1335013d.html" rel="next" title="java复习（2）">
+      java复习（2） <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

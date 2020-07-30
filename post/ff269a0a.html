@@ -26,13 +26,14 @@
 <meta property="og:url" content="http://yoursite.com/post/ff269a0a.html">
 <meta property="og:site_name" content="阿清的博客">
 <meta property="og:description" content="javaweb的第二段的复习，由于家里事致使每天的复习量很少，一天一点，也要加油复习呀！">
+<meta property="og:image" content="https://tva4.sinaimg.cn/large/0072kSCply1ggysnxhus6j30ug0e3dhk.jpg">
 <meta property="og:image" content="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg">
 <meta property="article:published_time" content="2020-07-12T01:39:18.000Z">
-<meta property="article:modified_time" content="2020-07-21T09:25:07.670Z">
+<meta property="article:modified_time" content="2020-07-27T09:34:21.201Z">
 <meta property="article:author" content="阿清">
-<meta property="article:tag" content="jsp">
+<meta property="article:tag" content="jdbc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg">
+<meta name="twitter:image" content="https://tva4.sinaimg.cn/large/0072kSCply1ggysnxhus6j30ug0e3dhk.jpg">
 
 <link rel="canonical" href="http://yoursite.com/post/ff269a0a.html">
 
@@ -135,7 +136,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -145,7 +146,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">4</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -220,7 +221,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -233,7 +234,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -308,7 +309,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-21 17:25:07" itemprop="dateModified" datetime="2020-07-21T17:25:07+08:00">2020-07-21</time>
+                <time title="修改时间：2020-07-27 17:34:21" itemprop="dateModified" datetime="2020-07-27T17:34:21+08:00">2020-07-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -338,7 +339,7 @@
         <p>javaweb的第二段的复习，由于家里事致使每天的复习量很少，一天一点，也要加油复习呀！</p>
 <a id="more"></a>
 <h2 id="1-JDBC-Java-DataBase-Connectivity"><a href="#1-JDBC-Java-DataBase-Connectivity" class="headerlink" title="1.JDBC:Java DataBase Connectivity"></a>1.JDBC:Java DataBase Connectivity</h2><p>可以为多种关系型数据库DBMS 提供统一的访问方式，用Java来操作数据库</p>
-<h2 id="2-JDBC-API-主要功能："><a href="#2-JDBC-API-主要功能：" class="headerlink" title="2.JDBC API 主要功能："></a>2.JDBC API 主要功能：</h2><h3 id="1-三件事，具体是通过以下类-接口实现："><a href="#1-三件事，具体是通过以下类-接口实现：" class="headerlink" title="1. 三件事，具体是通过以下类/接口实现："></a>1. 三件事，具体是通过以下类/接口实现：</h3><p>DriverManager ： 管理jdbc驱动<br>Connection： 连接（通过DriverManager产生）<br>Statement（PreparedStatement） ：增删改查  （通过Connection产生 ）<br>CallableStatement  ： 调用数据库中的 存储过程/存储函数  （通过Connection产生 ）<br>Result ：返回的结果集  （上面的Statement等产生 ）<br><img src="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg" alt="jdbc架构"></p>
+<h2 id="2-JDBC-API-主要功能："><a href="#2-JDBC-API-主要功能：" class="headerlink" title="2.JDBC API 主要功能："></a>2.JDBC API 主要功能：</h2><h3 id="1-三件事，具体是通过以下类-接口实现："><a href="#1-三件事，具体是通过以下类-接口实现：" class="headerlink" title="1. 三件事，具体是通过以下类/接口实现："></a>1. 三件事，具体是通过以下类/接口实现：</h3><p><img src="https://tva4.sinaimg.cn/large/0072kSCply1ggysnxhus6j30ug0e3dhk.jpg" alt="三个过程"><br>DriverManager ： 管理jdbc驱动<br>Connection： 连接（通过DriverManager产生）<br>Statement（PreparedStatement） ：增删改查  （通过Connection产生 ）<br>CallableStatement  ： 调用数据库中的 存储过程/存储函数  （通过Connection产生 ）<br>Result ：返回的结果集  （上面的Statement等产生 ）<br><img src="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg" alt="jdbc架构"></p>
 <h3 id="2-相关类的解释"><a href="#2-相关类的解释" class="headerlink" title="2. 相关类的解释"></a>2. 相关类的解释</h3><p>Connection产生操作数据库的对象：<br>Connection产生Statement对象：createStatement()<br>Connection产生PreparedStatement对象：prepareStatement()<br>Connection产生CallableStatement对象：prepareCall();  </p>
 <p>Statement操作数据库：<br>增删改：executeUpdate()<br>查询：executeQuery();</p>
 <p>ResultSet：保存结果集 select * from xxx<br>next():光标下移，判断是否有下一条数据；true/false<br>previous():  true/false<br>getXxx(字段名|位置):获取具体的字段值  </p>
@@ -347,18 +348,18 @@
 <p>2.PreparedStatement:<br>sql(可能存在占位符?)<br>在创建PreparedStatement 对象时，将sql预编译 prepareStatement(sql)<br>executeUpdate()<br>setXxx()替换占位符？ </p>
 <p>PreparedStatement的优势<br>1.编码更加简便（避免了字符串的拼接）<br>2.提高性能(因为 有预编译操作，预编译只需要执行一次)<br>3.安全（可以有效防止sql注入）</p>
 <h3 id="4-关于SQL注入问题"><a href="#4-关于SQL注入问题" class="headerlink" title="4. 关于SQL注入问题"></a>4. 关于SQL注入问题</h3><p>利用“符号将查询的字段结束并在后面加上恒等式<br>例如输入  用户名：任意值 ‘ or 1=1 - -<br>       密码：任意值</p>
-<h3 id="5-jdbc总结（模板）："><a href="#5-jdbc总结（模板）：" class="headerlink" title="5. jdbc总结（模板）："></a>5. jdbc总结（模板）：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">a.导入驱动包、加载具体驱动类Class.forName(&quot;具体驱动类&quot;);  </span><br><span class="line">b.与数据库建立连接connection &#x3D; DriverManager.getConnection(...);  </span><br><span class="line">c.通过connection，获取操作数据库的对象  （Statement\preparedStatement\callablestatement）</span><br><span class="line">stmt &#x3D; connection.createStatement();  </span><br><span class="line">d.(查询)处理结果集rs &#x3D; pstmt.executeQuery()  </span><br><span class="line">while(rs.next())&#123; rs.getXxx(..) ;&#125;   </span><br><span class="line">&#125;catch(ClassNotFoundException e  )  </span><br><span class="line">&#123; ...&#125;  </span><br><span class="line">catch(SQLException e)   </span><br><span class="line">&#123;... </span><br><span class="line">&#125;</span><br><span class="line">catch(Exception e)</span><br><span class="line">&#123;...</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;打开顺序，与关闭顺序相反</span><br><span class="line">	if(rs!&#x3D;null)rs.close()</span><br><span class="line">	if(stmt!&#x3D;null) stmt.close();</span><br><span class="line">	if(connection!&#x3D;null)connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--jdbc中，除了Class.forName() 抛出ClassNotFoundException，其余方法全部抛SQLException</span><br></pre></td></tr></table></figure>
+<h3 id="5-jdbc总结（模板）："><a href="#5-jdbc总结（模板）：" class="headerlink" title="5. jdbc总结（模板）："></a>5. jdbc总结（模板）：</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">a.导入驱动包、加载具体驱动类<span class="module-access"><span class="module"><span class="identifier">Class</span>.</span></span>for<span class="constructor">Name(<span class="string">"具体驱动类"</span>)</span>;  </span><br><span class="line">b.与数据库建立连接connection = <span class="module-access"><span class="module"><span class="identifier">DriverManager</span>.</span></span>get<span class="constructor">Connection(<span class="operator">...</span>)</span>;  </span><br><span class="line">c.通过connection，获取操作数据库的对象  （Statement\preparedStatement\callablestatement）</span><br><span class="line">stmt = connection.create<span class="constructor">Statement()</span>;  </span><br><span class="line">d.(查询)处理结果集rs = pstmt.execute<span class="constructor">Query()</span>  </span><br><span class="line"><span class="keyword">while</span>(rs.next<span class="literal">()</span>)&#123; rs.get<span class="constructor">Xxx(..)</span> ;&#125;   </span><br><span class="line">&#125;catch(ClassNotFoundException e  )  </span><br><span class="line">&#123; ...&#125;  </span><br><span class="line">catch(SQLException e)   </span><br><span class="line">&#123;... </span><br><span class="line">&#125;</span><br><span class="line">catch(Exception e)</span><br><span class="line">&#123;...</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//打开顺序，与关闭顺序相反</span></span><br><span class="line">	<span class="keyword">if</span>(rs!=null)rs.close<span class="literal">()</span></span><br><span class="line">	<span class="keyword">if</span>(stmt!=null) stmt.close<span class="literal">()</span>;</span><br><span class="line">	<span class="keyword">if</span>(connection!=null)connection.close<span class="literal">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--jdbc中，除了<span class="module-access"><span class="module"><span class="identifier">Class</span>.</span></span>for<span class="constructor">Name()</span> 抛出ClassNotFoundException，其余方法全部抛SQLException</span><br></pre></td></tr></table></figure>
 
 <h3 id="6-CallableStatement-调用-存储过程、存储函数"><a href="#6-CallableStatement-调用-存储过程、存储函数" class="headerlink" title="6. CallableStatement:调用 存储过程、存储函数"></a>6. CallableStatement:调用 存储过程、存储函数</h3><p>connection.prepareCall(参数：存储过程或存储函数名)<br>参数格式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">存储过程（无返回值return，用out参数替代）：  </span><br><span class="line">	&#123; call  存储过程名(参数列表) &#125;  </span><br><span class="line">存储函数（有返回值return）：  </span><br><span class="line">	&#123; ? &#x3D; call  存储函数名(参数列表) &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">存储过程（无返回值<span class="keyword">return</span>，用<span class="keyword">out</span>参数替代）：  </span><br><span class="line">	&#123; <span class="keyword">call</span>  存储过程名(参数列表) &#125;  </span><br><span class="line">存储函数（有返回值<span class="keyword">return</span>）：  </span><br><span class="line">	&#123; ? = <span class="keyword">call</span>  存储函数名(参数列表) &#125;</span><br></pre></td></tr></table></figure>
 <p>例子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">create or replace procedure addTwoNum ( num1  in number,num2  in number,result out number )  -- 1 + 2 -&gt;3</span><br><span class="line">as</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> replace <span class="function"><span class="keyword">procedure</span> <span class="title">addTwoNum</span> <span class="params">( num1  <span class="keyword">in</span> number,num2  <span class="keyword">in</span> number,<span class="keyword">result</span> <span class="keyword">out</span> number )</span>  -- 1 + 2 -&gt;3</span></span><br><span class="line"><span class="function"><span class="title">as</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function">	<span class="title">result</span> :</span>= num1+num2 ;</span><br><span class="line"><span class="keyword">end</span> ;</span><br></pre></td></tr></table></figure>
 
 
 <p>强调：<br>如果通过sqlplus 访问数据库，只需要开启：OracleServiceSID<br>通过其他程序访问数据（sqldevelop、navicate、JDBC），需要开启：OracleServiceSID、XxxListener</p>
 <p>JDBC调用存储过程的步骤：<br>a.产生 调用存储过程的对象（CallableStatement） cstmt =     connection.prepareCall(   “…” ) ;<br>b.通过setXxx()处理 输出参数值 cstmt.setInt(1, 30);<br>c.通过 registerOutParameter(…)处理输出参数类型<br>d.cstmt.execute()执行<br>e.接受 输出值（返回值）getXxx()  </p>
 <p>调存储函数：  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">create or replace function addTwoNumfunction ( num1  in number,num2  in number)  -- 1 + 2 </span><br><span class="line">return number</span><br><span class="line">as</span><br><span class="line">	result number ;	</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">	return result ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> addTwoNumfunction ( num1  <span class="keyword">in</span> <span class="built_in">number</span>,num2  <span class="keyword">in</span> <span class="built_in">number</span>)  <span class="comment">-- 1 + 2 </span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">number</span></span><br><span class="line"><span class="keyword">as</span></span><br><span class="line">	<span class="keyword">result</span> <span class="built_in">number</span> ;	</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">result</span> := num1+num2 ;</span><br><span class="line">	return result ;</span><br><span class="line"><span class="keyword">end</span> ;</span><br></pre></td></tr></table></figure>
 <p>JDBC调用存储函数：与调存储过程的区别：<br>在调用时，注意参数：”{? =  call addTwoNumfunction    (?,?) }”</p>
 <h3 id="7-处理CLOB-BLOB类型"><a href="#7-处理CLOB-BLOB类型" class="headerlink" title="7. 处理CLOB/BLOB类型"></a>7. 处理CLOB/BLOB类型</h3><p>处理稍大型数据：  </p>
 <p>a.存储路径    E:\JDK_API_zh_CN.CHM<br>    通过JDBC存储文件路径，然后 根据IO操作处理<br>    例如：JDBC将 E:\JDK_API_zh_CN.CHM 文件 以字符串形式  “E:\JDK_API_zh_CN.CHM”存储到数据库中<br>        获取：1.获取该路径“E:\JDK_API_zh_CN.CHM”  2.IO      </p>
@@ -396,7 +397,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/jsp/" rel="tag"><i class="fa fa-tag"></i> jsp</a>
+              <a href="/tags/jdbc/" rel="tag"><i class="fa fa-tag"></i> jdbc</a>
           </div>
 
         

@@ -1,47 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>javaweb复习（2）</title>
-    <url>/post/ff269a0a.html</url>
-    <content><![CDATA[<p>javaweb的第二段的复习，由于家里事致使每天的复习量很少，一天一点，也要加油复习呀！</p>
+    <title>Javaweb复习（4）</title>
+    <url>/post/c0b195dd.html</url>
+    <content><![CDATA[<p>过滤器</p>
 <a id="more"></a>
-<h2 id="1-JDBC-Java-DataBase-Connectivity"><a href="#1-JDBC-Java-DataBase-Connectivity" class="headerlink" title="1.JDBC:Java DataBase Connectivity"></a>1.JDBC:Java DataBase Connectivity</h2><p>可以为多种关系型数据库DBMS 提供统一的访问方式，用Java来操作数据库</p>
-<h2 id="2-JDBC-API-主要功能："><a href="#2-JDBC-API-主要功能：" class="headerlink" title="2.JDBC API 主要功能："></a>2.JDBC API 主要功能：</h2><h3 id="1-三件事，具体是通过以下类-接口实现："><a href="#1-三件事，具体是通过以下类-接口实现：" class="headerlink" title="1. 三件事，具体是通过以下类/接口实现："></a>1. 三件事，具体是通过以下类/接口实现：</h3><p>DriverManager ： 管理jdbc驱动<br>Connection： 连接（通过DriverManager产生）<br>Statement（PreparedStatement） ：增删改查  （通过Connection产生 ）<br>CallableStatement  ： 调用数据库中的 存储过程/存储函数  （通过Connection产生 ）<br>Result ：返回的结果集  （上面的Statement等产生 ）<br><img src="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg" alt="jdbc架构"></p>
-<h3 id="2-相关类的解释"><a href="#2-相关类的解释" class="headerlink" title="2. 相关类的解释"></a>2. 相关类的解释</h3><p>Connection产生操作数据库的对象：<br>Connection产生Statement对象：createStatement()<br>Connection产生PreparedStatement对象：prepareStatement()<br>Connection产生CallableStatement对象：prepareCall();  </p>
-<p>Statement操作数据库：<br>增删改：executeUpdate()<br>查询：executeQuery();</p>
-<p>ResultSet：保存结果集 select * from xxx<br>next():光标下移，判断是否有下一条数据；true/false<br>previous():  true/false<br>getXxx(字段名|位置):获取具体的字段值  </p>
-<p>PreparedStatement操作数据库：<br>public interface PreparedStatement extends Statement<br>因此有<br>增删改：executeUpdate()<br>查询：executeQuery();<br>–此外<br>赋值操作 setXxx();</p>
-<h3 id="3-PreparedStatement与Statement在使用时的区别："><a href="#3-PreparedStatement与Statement在使用时的区别：" class="headerlink" title="3. PreparedStatement与Statement在使用时的区别："></a>3. PreparedStatement与Statement在使用时的区别：</h3><p>1.Statement:<br>sql<br>executeUpdate(sql)  </p>
-<p>2.PreparedStatement:<br>sql(可能存在占位符?)<br>在创建PreparedStatement 对象时，将sql预编译 prepareStatement(sql)<br>executeUpdate()<br>setXxx()替换占位符？ </p>
-<p>PreparedStatement的优势<br>1.编码更加简便（避免了字符串的拼接）<br>2.提高性能(因为 有预编译操作，预编译只需要执行一次)<br>3.安全（可以有效防止sql注入）</p>
-<h3 id="4-关于SQL注入问题"><a href="#4-关于SQL注入问题" class="headerlink" title="4. 关于SQL注入问题"></a>4. 关于SQL注入问题</h3><p>利用“符号将查询的字段结束并在后面加上恒等式<br>例如输入  用户名：任意值 ‘ or 1=1 - -<br>       密码：任意值</p>
-<h3 id="5-jdbc总结（模板）："><a href="#5-jdbc总结（模板）：" class="headerlink" title="5. jdbc总结（模板）："></a>5. jdbc总结（模板）：</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">try&#123;</span><br><span class="line">a.导入驱动包、加载具体驱动类Class.forName(&quot;具体驱动类&quot;);  </span><br><span class="line">b.与数据库建立连接connection &#x3D; DriverManager.getConnection(...);  </span><br><span class="line">c.通过connection，获取操作数据库的对象  （Statement\preparedStatement\callablestatement）</span><br><span class="line">stmt &#x3D; connection.createStatement();  </span><br><span class="line">d.(查询)处理结果集rs &#x3D; pstmt.executeQuery()  </span><br><span class="line">while(rs.next())&#123; rs.getXxx(..) ;&#125;   </span><br><span class="line">&#125;catch(ClassNotFoundException e  )  </span><br><span class="line">&#123; ...&#125;  </span><br><span class="line">catch(SQLException e)   </span><br><span class="line">&#123;... </span><br><span class="line">&#125;</span><br><span class="line">catch(Exception e)</span><br><span class="line">&#123;...</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">	&#x2F;&#x2F;打开顺序，与关闭顺序相反</span><br><span class="line">	if(rs!&#x3D;null)rs.close()</span><br><span class="line">	if(stmt!&#x3D;null) stmt.close();</span><br><span class="line">	if(connection!&#x3D;null)connection.close();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--jdbc中，除了Class.forName() 抛出ClassNotFoundException，其余方法全部抛SQLException</span><br></pre></td></tr></table></figure>
-
-<h3 id="6-CallableStatement-调用-存储过程、存储函数"><a href="#6-CallableStatement-调用-存储过程、存储函数" class="headerlink" title="6. CallableStatement:调用 存储过程、存储函数"></a>6. CallableStatement:调用 存储过程、存储函数</h3><p>connection.prepareCall(参数：存储过程或存储函数名)<br>参数格式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">存储过程（无返回值return，用out参数替代）：  </span><br><span class="line">	&#123; call  存储过程名(参数列表) &#125;  </span><br><span class="line">存储函数（有返回值return）：  </span><br><span class="line">	&#123; ? &#x3D; call  存储函数名(参数列表) &#125;</span><br></pre></td></tr></table></figure>
-<p>例子</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create or replace procedure addTwoNum ( num1  in number,num2  in number,result out number )  -- 1 + 2 -&gt;3</span><br><span class="line">as</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
-
-
-<p>强调：<br>如果通过sqlplus 访问数据库，只需要开启：OracleServiceSID<br>通过其他程序访问数据（sqldevelop、navicate、JDBC），需要开启：OracleServiceSID、XxxListener</p>
-<p>JDBC调用存储过程的步骤：<br>a.产生 调用存储过程的对象（CallableStatement） cstmt =     connection.prepareCall(   “…” ) ;<br>b.通过setXxx()处理 输出参数值 cstmt.setInt(1, 30);<br>c.通过 registerOutParameter(…)处理输出参数类型<br>d.cstmt.execute()执行<br>e.接受 输出值（返回值）getXxx()  </p>
-<p>调存储函数：  </p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">create or replace function addTwoNumfunction ( num1  in number,num2  in number)  -- 1 + 2 </span><br><span class="line">return number</span><br><span class="line">as</span><br><span class="line">	result number ;	</span><br><span class="line">begin</span><br><span class="line">	result :&#x3D; num1+num2 ;</span><br><span class="line">	return result ;</span><br><span class="line">end ;</span><br></pre></td></tr></table></figure>
-<p>JDBC调用存储函数：与调存储过程的区别：<br>在调用时，注意参数：”{? =  call addTwoNumfunction    (?,?) }”</p>
-<h3 id="7-处理CLOB-BLOB类型"><a href="#7-处理CLOB-BLOB类型" class="headerlink" title="7. 处理CLOB/BLOB类型"></a>7. 处理CLOB/BLOB类型</h3><p>处理稍大型数据：  </p>
-<p>a.存储路径    E:\JDK_API_zh_CN.CHM<br>    通过JDBC存储文件路径，然后 根据IO操作处理<br>    例如：JDBC将 E:\JDK_API_zh_CN.CHM 文件 以字符串形式  “E:\JDK_API_zh_CN.CHM”存储到数据库中<br>        获取：1.获取该路径“E:\JDK_API_zh_CN.CHM”  2.IO      </p>
-<p>b.<br>    CLOB：大文本数据 （小说-&gt;数据）<br>    BLOB：二进制  </p>
-<p>clob:大文本数据   字符流 Reader Writer  </p>
-<p>存<br>1.先通过pstmt 的? 代替小说内容 （占位符）<br>2.再通过pstmt.setCharacterStream(2, reader,  (int)file.length());  将上一步的？替换为 小说流， 注意第三个参数需要是 Int类型</p>
-<p>取：<br>1.通过Reader reader = rs.getCharacterStream(“NOVEL”) ; 将cloc类型的数据  保存到Reader对象中<br>2.将Reader通过Writer输出即可。</p>
-<p>blob:二进制  字节流 InputStream OutputStream<br>与CLOB步骤基本一致，区别：setBinaryStream(…)  getBinaryStream(…)   </p>
+<h2 id="过滤器："><a href="#过滤器：" class="headerlink" title="过滤器："></a>过滤器：</h2><p>过滤器实际上就是对web资源进行拦截，做一些处理后再交给下一个过滤器或servlet处理<br>通常都是用来拦截request进行处理的，也可以对返回的response进行拦截处理<br>(分为两部分一部分为拦截请求，另一部分为放行）</p>
+<p><img src="https://img-blog.csdn.net/20180730175152255?watermark%2F2%2Ftext%2FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%3D%3D%2Ffont%2F5a6L5L2T%2Ffontsize%2F400%2Ffill%2FI0JBQkFCMA%3D%3D%2Fdissolve%2F70" alt="过滤器示意图 "> </p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>自动登录<br>统一设置编码格式<br>访问权限控制<br>敏感字符过滤等  </p>
+<h2 id="过滤器的使用"><a href="#过滤器的使用" class="headerlink" title="过滤器的使用"></a>过滤器的使用</h2><p>首先实现一个Filter接口<br>init()、destroy() 的原理、执行时机 同Servlet<br>配置过滤器，类似servlet<br>通过doFilter()处理拦截，并且通过chain.doFilter(request, response);放行</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharsetFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*销毁时调用*/</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理*/</span></span><br><span class="line">       </span><br><span class="line">        chain.doFilter(req, resp);<span class="comment">//交给下一个过滤器或servlet处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="filter映射"><a href="#filter映射" class="headerlink" title="filter映射"></a>filter映射</h2><p>只拦截 访问MyServlet的请求<br><code>&lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;</code><br>拦截一切请求（每一次访问 都会被拦截）<br><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code></p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>dispatcher请求方式：<br>REQUEST：拦截HTTP请求 get post<br>FORWARD：只拦截 通过 请求转发方式的请求<br>INCLUDE:只拦截拦截通过 request.getRequestDispatcher(“”).include()  、通过&lt;jsp:include page=”…” /&gt;此种方式发出的请求<br>ERROR：只拦截<error-page>发出的请求</p>
+<p>过滤器中doFilter方法参数：ServletRequest<br>在Servlet中的方法参数：HttpServletRequest</p>
+<h2 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h2><p>可以配置多个过滤器，过滤器的先后顺序 是由 <code>&lt;filter-mapping&gt;</code>的位置决定<br>具体的可学习 <a href="https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912" target="_blank" rel="noopener">https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912</a></p>
 ]]></content>
       <categories>
         <category>学习过程</category>
         <category>知识回顾</category>
       </categories>
       <tags>
-        <tag>jsp</tag>
+        <tag>过滤器</tag>
       </tags>
   </entry>
   <entry>
@@ -61,11 +40,11 @@
 <li>Java代码（脚本scriptlet）</li>
 </ol>
 <ul>
-<li>全局变量、定义方法<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line">public String bookName</span><br><span class="line">public void init()&#123;</span><br><span class="line">   bookName &#x3D;&quot;java书&quot;</span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
-<li>局部变量、Java代码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;% </span><br><span class="line">String name &#x3D;&quot;zhangsan&quot;;</span><br><span class="line">out.print(&quot;hello&quot;+name);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
-<li>输出表达式 <font color="red">结尾没有分号</font><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%&#x3D;&quot;hello&quot;+bookName%&gt;</span><br></pre></td></tr></table></figure>
+<li>全局变量、定义方法<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line">&lt;%!</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">String</span> bookName</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">   bookName =<span class="string">"java书"</span></span><br><span class="line">&#125;</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+<li>局部变量、Java代码<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line">&lt;% </span><br><span class="line">String <span class="type">name</span> ="zhangsan";</span><br><span class="line"><span class="keyword">out</span>.print("hello"+<span class="type">name</span>);</span><br><span class="line">%&gt;</span><br></pre></td></tr></table></figure></li>
+<li>输出表达式 <font color="red">结尾没有分号</font><figure class="highlight mel"><table><tr><td class="code"><pre><span class="line">&lt;%=<span class="string">"hello"</span>+bookName%&gt;</span><br></pre></td></tr></table></figure>
 <ol start="3">
-<li>指令<br>例子:page指令<br>language；jsp页面使用的脚本语言<br>import: 导入的类<br>pageEncode：jsp自身编码 jsp -&gt;java<br>contentType: 浏览器解析jsp的编码<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;%@ page  &gt;</span><br></pre></td></tr></table></figure></li>
+<li>指令<br>例子:page指令<br>language；jsp页面使用的脚本语言<br>import: 导入的类<br>pageEncode：jsp自身编码 jsp -&gt;java<br>contentType: 浏览器解析jsp的编码<figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">&lt;%@<span class="built_in"> page </span> &gt;</span><br></pre></td></tr></table></figure></li>
 </ol>
 </li>
 </ul>
@@ -181,6 +160,263 @@
       </tags>
   </entry>
   <entry>
+    <title>java复习(1)</title>
+    <url>/post/782229f1.html</url>
+    <content><![CDATA[<p>java基础,跳过基础语法，直接到面向对象</p>
+<a id="more"></a>
+<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><blockquote>
+<p>1.对象是具体的事物;类是对对象的抽象;<br>2.类可以看成一类对象的模板，对象可以看成该类的一个具体实例。<br>3.类是用于描述同一类型的对象的一个抽象概念，类中定义了这一类对象所应具有的共同的属性、方法。</p>
+</blockquote>
+<p>自我总结：类是对象的一个抽象的集合</p>
+<h2 id="面向对象的内存分析"><a href="#面向对象的内存分析" class="headerlink" title="面向对象的内存分析"></a>面向对象的内存分析</h2><p>Java虚拟机的内存可以分为三个区域：栈stack、堆heap、方法区method area。</p>
+<blockquote>
+<p>栈的特点如下：<br>　　1. 栈描述的是方法执行的内存模型。每个方法被调用都会创建一个栈帧(存储局部变量、操作数、方法出口等)<br>　　2. JVM为每个线程创建一个栈，用于存放该线程执行方法的信息(实际参数、局部变量等)<br>　　3. 栈属于线程私有，不能实现线程间的共享!<br>　　4. 栈的存储特性是“先进后出，后进先出”<br>　　5. 栈是由系统自动分配，速度快!栈是一个连续的内存空间!  </p>
+</blockquote>
+<blockquote>
+<p>堆的特点如下：<br>　　1. 堆用于存储创建好的对象和数组(数组也是对象)<br>　　2. JVM只有一个堆，被所有线程共享<br>　　3. 堆是一个不连续的内存空间，分配灵活，速度慢!  </p>
+</blockquote>
+<blockquote>
+<p>方法区(又叫静态区)特点如下：<br>　　1. JVM只有一个方法区，被所有线程共享!<br>　　2. 方法区实际也是堆，只是用于存储类、常量相关的信息!<br>　　3. 用来存放程序中永远是不变或唯一的内容。(类信息【Class对象】、静态变量、字符串常量等) </p>
+</blockquote>
+<p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20171026/1509008324820095.png" alt="内存分配图"> </p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Computer</span> &#123;</span></span><br><span class="line">    <span class="keyword">String</span> brand;  <span class="comment">//品牌</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SxtStu</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">String</span> sname;</span><br><span class="line">    <span class="keyword">int</span> age;</span><br><span class="line">    Computer comp;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">study</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"我正在学习！使用我们的电脑，"</span>+comp.brand);</span><br><span class="line">    &#125;</span><br><span class="line">    SxtStu() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">        SxtStu stu1 = <span class="keyword">new</span> SxtStu();</span><br><span class="line">        stu1.sname = <span class="string">"高琪"</span>;</span><br><span class="line">        Computer comp1 = <span class="keyword">new</span> Computer();</span><br><span class="line">        comp1.brand = <span class="string">"联想"</span>;</span><br><span class="line">        stu1.comp = comp1;</span><br><span class="line">        stu1.study();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如图有两个类，一个学生类，一个电脑类，学生类有个电脑对象。<br>代码加载，代码、静态变量、字符串常量加载到方法区。然后再栈中加载静态方法，（SxtStu stu1 = new SxtStu();）栈中局部变量stu=null然后new，调用构造方法，在堆中创建一个SxtStu对象，（调用的构造方法，没有赋值)，把对象地址给到栈中,代码继续向下走将值赋给对象（字符串是从方法区赋给对象），代码继续向下走，Computer comp1 = new Computer();与SxtStu类似，先在栈中创建局部边变量c1，再在堆中创建对象，把地址给栈，把值赋给对象。stu1.comp = c1;把c1地址给stu1.comp</p>
+<h2 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h2><p>构造器也叫构造方法(constructor)，用于对象的初始化。构造器是一个创建对象时被自动调用的特殊方法，目的是对象的初始化。构造器的名称应与类的名称一致。Java通过new关键字来调用构造器，从而返回该类的实例，是一种特殊的方法。</p>
+<blockquote>
+<p>1.通过new关键字调用!!<br>2.构造器虽然有返回值，但是不能定义返回值类型(返回值的类型肯定是本类)，不能在构造器里使用return返回某个值。<br>3.如果我们没有定义构造器，则编译器会自动定义一个无参的构造函数。如果已定义则编译器不会自动添加!<br>4.构造器的方法名必须和类名一致!</p>
+</blockquote>
+<h2 id="java的垃圾回收"><a href="#java的垃圾回收" class="headerlink" title="java的垃圾回收"></a>java的垃圾回收</h2><p>Java不同于c语言，Java不需要手动回收垃圾,既有好处也有坏处。好处是，不需要为垃圾回收而过分动脑，坏处就是性能的优化可能不足。  </p>
+<h3 id="垃圾回收的相关算法："><a href="#垃圾回收的相关算法：" class="headerlink" title="垃圾回收的相关算法："></a>垃圾回收的相关算法：</h3><blockquote>
+<ol>
+<li>引用计数法：堆中每个对象都有一个引用计数。被引用一次，计数加1. 被引用变量值变为null，则计数减1，直到计数为0，则表示变成无用对象。优点是算法简单，缺点是“循环引用的无用对象”无法别识别。  </li>
+</ol>
+</blockquote>
+<blockquote>
+<ol start="2">
+<li>引用可达法(根搜索算法):程序把所有的引用关系看作一张图，从一个节点GC ROOT开始，寻找对应的引用节点，找到这个节点以后，继续寻找这个节点的引用节点，当所有的引用节点寻找完毕之后，剩余的节点则被认为是没有被引用到的节点，即无用的节点。</li>
+</ol>
+</blockquote>
+<h3 id="分代垃圾回收"><a href="#分代垃圾回收" class="headerlink" title="分代垃圾回收"></a>分代垃圾回收</h3><p>分代垃圾回收机制，是基于这样一个事实：不同的对象的生命周期是不一样的。因此，不同生命周期的对象可以采取不同的回收算法，以便提高回收效率。我们将对象分为三种状态：年轻代、年老代、持久代。JVM将堆内存划分为 Eden、Survivor 和 Tenured/Old 空间。</p>
+<ol>
+<li><p>年轻代<br>　　所有新生成的对象首先都是放在Eden区。 年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象，对应的是Minor GC，每次 Minor GC 会清理年轻代的内存，算法采用效率较高的复制算法，频繁的操作，但是会浪费内存空间。当“年轻代”区域存放满对象后，就将对象存放到年老代区域。  </p>
+</li>
+<li><p>年老代<br>　　在年轻代中经历了N(默认15)次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。年老代对象越来越多，我们就需要启动Major GC和Full GC(全量回收)，来一次大扫除，全面清理年轻代区域和年老代区域。</p>
+</li>
+<li><p>持久代<br>　　用于存放静态文件，如Java类、方法等。持久代对垃圾回收没有显著影响</p>
+</li>
+</ol>
+<p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494926399617250.png" alt="堆内存的划分细节"></p>
+<p>·Minor GC:<br>用于清理年轻代区域。Eden区满了就会触发一次Minor GC。清理无用对象，将有用对象复制到“Survivor1”、“Survivor2”区中(这两个区，大小空间也相同，同一时刻Survivor1和Survivor2只有一个在用，一个为空)</p>
+<p>·Major GC：<br>用于清理老年代区域。</p>
+<p>·Full GC：<br>用于清理年轻代、年老代区域。 成本较高，会对系统性能产生影响。</p>
+<p>垃圾回收过程</p>
+<blockquote>
+<p>1、新创建的对象，绝大多数都会存储在Eden中，<br> 2、当Eden满了（达到一定比例）不能创建新对象，则触发垃圾回收（GC），将无用对象清理掉，然后剩余对象复制到某个Survivor中，如S1，同时清空Eden区<br> 3、当Eden区再次满了，会将S1中的不能清空的对象存到另外一个Survivor中，如S2，同时将Eden区中的不能清空的对象，也复制到S1中，保证Eden和S1，均被清空。<br> 4、重复多次(默认15次)Survivor中没有被清理的对象，则会复制到老年代Old(Tenured)区中，<br> 5、当Old区满了，则会触发一个一次完整地垃圾回收（FullGC），之前新生代的垃圾回收称为（minorGC）  </p>
+</blockquote>
+<h3 id="容易造成内存泄露的操作"><a href="#容易造成内存泄露的操作" class="headerlink" title="容易造成内存泄露的操作"></a>容易造成内存泄露的操作</h3><ol>
+<li>创建大量无用对象<br>　　比如，我们在需要大量拼接字符串时，使用了String而不是StringBuilder。<figure class="highlight processing"><table><tr><td class="code"><pre><span class="line"><span class="keyword">String</span> <span class="built_in">str</span> = <span class="string">""</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10000</span>; i++) &#123;   </span><br><span class="line">    <span class="built_in">str</span> += i;     <span class="comment">//相当于产生了10000个String对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<ol start="2">
+<li><p>静态集合类的使用<br>　　像HashMap、Vector、List等的使用最容易出现内存泄露，这些静态变量的生命周期和应用程序一致，所有的对象Object也不能被释放。</p>
+</li>
+<li><p>各种连接对象(IO流对象、数据库连接对象、网络连接对象)未关闭<br>　　IO流对象、数据库连接对象、网络连接对象等连接对象属于物理连接，和硬盘或者网络连接，不使用的时候一定要关闭。</p>
+</li>
+<li><p>监听器的使用<br>　　释放对象时，没有删除相应的监听器。</p>
+</li>
+</ol>
+<p>要点：</p>
+<blockquote>
+<p>1.程序员无权调用垃圾回收器。<br>2.程序员可以调用System.gc()，该方法只是通知JVM，并不是运行垃圾回收器。尽量少用，会申请启动Full GC，成本高，影响系统性能。<br>3.finalize方法，是Java提供给程序员用来释放对象或资源的方法，但是尽量少用。</p>
+</blockquote>
+<h2 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h2><ol>
+<li>对象创建的过程和this的本质(可以简单理解为当前对象)  </li>
+</ol>
+<p>构造方法是创建Java对象的重要途径，通过new关键字调用构造器时，构造器也确实返回该类的对象，但这个对象并不是完全由构造器负责创建。创建一个对象分为如下四步：</p>
+<blockquote>
+<p>1.分配对象空间，并将对象成员变量初始化为0或空(new左边)<br>2.执行属性值的显示初始化<br>3.执行构造方法<br>4.返回对象的地址给相关的变量</p>
+</blockquote>
+<p><font color="red">this的本质就是“创建好的对象的地址”!</font> 由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象” 。</p>
+<ol start="2">
+<li>this最常的用法：  <blockquote>
+<p>1.在程序中产生二义性之处，应使用this来指明当前对象;普通方法中，this总是指向调用该方法的对象。构造方法中，this总是指向正要初始化的对象。  </p>
+</blockquote>
+</li>
+<li>使用this关键字调用重载的构造方法，避免相同的初始化代码。但只能在构造方法中用，并且必须位于构造方法的第一句。(构造方法的重构之后重构的方法中this(a,b),a和b为之前重构的参数）  </li>
+<li>this不能用于static方法中。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javaweb复习（2）</title>
+    <url>/post/ff269a0a.html</url>
+    <content><![CDATA[<p>javaweb的第二段的复习，由于家里事致使每天的复习量很少，一天一点，也要加油复习呀！</p>
+<a id="more"></a>
+<h2 id="1-JDBC-Java-DataBase-Connectivity"><a href="#1-JDBC-Java-DataBase-Connectivity" class="headerlink" title="1.JDBC:Java DataBase Connectivity"></a>1.JDBC:Java DataBase Connectivity</h2><p>可以为多种关系型数据库DBMS 提供统一的访问方式，用Java来操作数据库</p>
+<h2 id="2-JDBC-API-主要功能："><a href="#2-JDBC-API-主要功能：" class="headerlink" title="2.JDBC API 主要功能："></a>2.JDBC API 主要功能：</h2><h3 id="1-三件事，具体是通过以下类-接口实现："><a href="#1-三件事，具体是通过以下类-接口实现：" class="headerlink" title="1. 三件事，具体是通过以下类/接口实现："></a>1. 三件事，具体是通过以下类/接口实现：</h3><p><img src="https://tva4.sinaimg.cn/large/0072kSCply1ggysnxhus6j30ug0e3dhk.jpg" alt="三个过程"><br>DriverManager ： 管理jdbc驱动<br>Connection： 连接（通过DriverManager产生）<br>Statement（PreparedStatement） ：增删改查  （通过Connection产生 ）<br>CallableStatement  ： 调用数据库中的 存储过程/存储函数  （通过Connection产生 ）<br>Result ：返回的结果集  （上面的Statement等产生 ）<br><img src="https://tva2.sinaimg.cn/large/0072kSCply1ggrzrexxxaj30vh0fwdgu.jpg" alt="jdbc架构"></p>
+<h3 id="2-相关类的解释"><a href="#2-相关类的解释" class="headerlink" title="2. 相关类的解释"></a>2. 相关类的解释</h3><p>Connection产生操作数据库的对象：<br>Connection产生Statement对象：createStatement()<br>Connection产生PreparedStatement对象：prepareStatement()<br>Connection产生CallableStatement对象：prepareCall();  </p>
+<p>Statement操作数据库：<br>增删改：executeUpdate()<br>查询：executeQuery();</p>
+<p>ResultSet：保存结果集 select * from xxx<br>next():光标下移，判断是否有下一条数据；true/false<br>previous():  true/false<br>getXxx(字段名|位置):获取具体的字段值  </p>
+<p>PreparedStatement操作数据库：<br>public interface PreparedStatement extends Statement<br>因此有<br>增删改：executeUpdate()<br>查询：executeQuery();<br>–此外<br>赋值操作 setXxx();</p>
+<h3 id="3-PreparedStatement与Statement在使用时的区别："><a href="#3-PreparedStatement与Statement在使用时的区别：" class="headerlink" title="3. PreparedStatement与Statement在使用时的区别："></a>3. PreparedStatement与Statement在使用时的区别：</h3><p>1.Statement:<br>sql<br>executeUpdate(sql)  </p>
+<p>2.PreparedStatement:<br>sql(可能存在占位符?)<br>在创建PreparedStatement 对象时，将sql预编译 prepareStatement(sql)<br>executeUpdate()<br>setXxx()替换占位符？ </p>
+<p>PreparedStatement的优势<br>1.编码更加简便（避免了字符串的拼接）<br>2.提高性能(因为 有预编译操作，预编译只需要执行一次)<br>3.安全（可以有效防止sql注入）</p>
+<h3 id="4-关于SQL注入问题"><a href="#4-关于SQL注入问题" class="headerlink" title="4. 关于SQL注入问题"></a>4. 关于SQL注入问题</h3><p>利用“符号将查询的字段结束并在后面加上恒等式<br>例如输入  用户名：任意值 ‘ or 1=1 - -<br>       密码：任意值</p>
+<h3 id="5-jdbc总结（模板）："><a href="#5-jdbc总结（模板）：" class="headerlink" title="5. jdbc总结（模板）："></a>5. jdbc总结（模板）：</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">a.导入驱动包、加载具体驱动类<span class="module-access"><span class="module"><span class="identifier">Class</span>.</span></span>for<span class="constructor">Name(<span class="string">"具体驱动类"</span>)</span>;  </span><br><span class="line">b.与数据库建立连接connection = <span class="module-access"><span class="module"><span class="identifier">DriverManager</span>.</span></span>get<span class="constructor">Connection(<span class="operator">...</span>)</span>;  </span><br><span class="line">c.通过connection，获取操作数据库的对象  （Statement\preparedStatement\callablestatement）</span><br><span class="line">stmt = connection.create<span class="constructor">Statement()</span>;  </span><br><span class="line">d.(查询)处理结果集rs = pstmt.execute<span class="constructor">Query()</span>  </span><br><span class="line"><span class="keyword">while</span>(rs.next<span class="literal">()</span>)&#123; rs.get<span class="constructor">Xxx(..)</span> ;&#125;   </span><br><span class="line">&#125;catch(ClassNotFoundException e  )  </span><br><span class="line">&#123; ...&#125;  </span><br><span class="line">catch(SQLException e)   </span><br><span class="line">&#123;... </span><br><span class="line">&#125;</span><br><span class="line">catch(Exception e)</span><br><span class="line">&#123;...</span><br><span class="line">&#125;</span><br><span class="line">finally</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//打开顺序，与关闭顺序相反</span></span><br><span class="line">	<span class="keyword">if</span>(rs!=null)rs.close<span class="literal">()</span></span><br><span class="line">	<span class="keyword">if</span>(stmt!=null) stmt.close<span class="literal">()</span>;</span><br><span class="line">	<span class="keyword">if</span>(connection!=null)connection.close<span class="literal">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">--jdbc中，除了<span class="module-access"><span class="module"><span class="identifier">Class</span>.</span></span>for<span class="constructor">Name()</span> 抛出ClassNotFoundException，其余方法全部抛SQLException</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-CallableStatement-调用-存储过程、存储函数"><a href="#6-CallableStatement-调用-存储过程、存储函数" class="headerlink" title="6. CallableStatement:调用 存储过程、存储函数"></a>6. CallableStatement:调用 存储过程、存储函数</h3><p>connection.prepareCall(参数：存储过程或存储函数名)<br>参数格式：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">存储过程（无返回值<span class="keyword">return</span>，用<span class="keyword">out</span>参数替代）：  </span><br><span class="line">	&#123; <span class="keyword">call</span>  存储过程名(参数列表) &#125;  </span><br><span class="line">存储函数（有返回值<span class="keyword">return</span>）：  </span><br><span class="line">	&#123; ? = <span class="keyword">call</span>  存储函数名(参数列表) &#125;</span><br></pre></td></tr></table></figure>
+<p>例子</p>
+<figure class="highlight oxygene"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> replace <span class="function"><span class="keyword">procedure</span> <span class="title">addTwoNum</span> <span class="params">( num1  <span class="keyword">in</span> number,num2  <span class="keyword">in</span> number,<span class="keyword">result</span> <span class="keyword">out</span> number )</span>  -- 1 + 2 -&gt;3</span></span><br><span class="line"><span class="function"><span class="title">as</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function">	<span class="title">result</span> :</span>= num1+num2 ;</span><br><span class="line"><span class="keyword">end</span> ;</span><br></pre></td></tr></table></figure>
+
+
+<p>强调：<br>如果通过sqlplus 访问数据库，只需要开启：OracleServiceSID<br>通过其他程序访问数据（sqldevelop、navicate、JDBC），需要开启：OracleServiceSID、XxxListener</p>
+<p>JDBC调用存储过程的步骤：<br>a.产生 调用存储过程的对象（CallableStatement） cstmt =     connection.prepareCall(   “…” ) ;<br>b.通过setXxx()处理 输出参数值 cstmt.setInt(1, 30);<br>c.通过 registerOutParameter(…)处理输出参数类型<br>d.cstmt.execute()执行<br>e.接受 输出值（返回值）getXxx()  </p>
+<p>调存储函数：  </p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">function</span> addTwoNumfunction ( num1  <span class="keyword">in</span> <span class="built_in">number</span>,num2  <span class="keyword">in</span> <span class="built_in">number</span>)  <span class="comment">-- 1 + 2 </span></span><br><span class="line"><span class="keyword">return</span> <span class="built_in">number</span></span><br><span class="line"><span class="keyword">as</span></span><br><span class="line">	<span class="keyword">result</span> <span class="built_in">number</span> ;	</span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	<span class="keyword">result</span> := num1+num2 ;</span><br><span class="line">	return result ;</span><br><span class="line"><span class="keyword">end</span> ;</span><br></pre></td></tr></table></figure>
+<p>JDBC调用存储函数：与调存储过程的区别：<br>在调用时，注意参数：”{? =  call addTwoNumfunction    (?,?) }”</p>
+<h3 id="7-处理CLOB-BLOB类型"><a href="#7-处理CLOB-BLOB类型" class="headerlink" title="7. 处理CLOB/BLOB类型"></a>7. 处理CLOB/BLOB类型</h3><p>处理稍大型数据：  </p>
+<p>a.存储路径    E:\JDK_API_zh_CN.CHM<br>    通过JDBC存储文件路径，然后 根据IO操作处理<br>    例如：JDBC将 E:\JDK_API_zh_CN.CHM 文件 以字符串形式  “E:\JDK_API_zh_CN.CHM”存储到数据库中<br>        获取：1.获取该路径“E:\JDK_API_zh_CN.CHM”  2.IO      </p>
+<p>b.<br>    CLOB：大文本数据 （小说-&gt;数据）<br>    BLOB：二进制  </p>
+<p>clob:大文本数据   字符流 Reader Writer  </p>
+<p>存<br>1.先通过pstmt 的? 代替小说内容 （占位符）<br>2.再通过pstmt.setCharacterStream(2, reader,  (int)file.length());  将上一步的？替换为 小说流， 注意第三个参数需要是 Int类型</p>
+<p>取：<br>1.通过Reader reader = rs.getCharacterStream(“NOVEL”) ; 将cloc类型的数据  保存到Reader对象中<br>2.将Reader通过Writer输出即可。</p>
+<p>blob:二进制  字节流 InputStream OutputStream<br>与CLOB步骤基本一致，区别：setBinaryStream(…)  getBinaryStream(…)   </p>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>jdbc</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java复习（2）</title>
+    <url>/post/1335013d.html</url>
+    <content><![CDATA[<p>Java面向对象的进一步学习，Java的封装、继承、多态的主要学习</p>
+<a id="more"></a>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承让我们更加容易实现类的扩展。 比如，我们定义了人类类，再定义Boy类就只需要扩展人类即可。实现了代码的重用，不用再重新发明轮子(don’t  reinvent  wheels)。  </p>
+<p> 继承使用要点：</p>
+<blockquote>
+<p>1.父类也称作超类、基类、派生类等。<br>2.Java中只有单继承，没有像C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。<br>3.Java中类没有多继承，接口有多继承。<br>4.子类继承父类，可以得到父类的全部属性和方法 (除了父类的构造方法)，但不见得可以直接访问(比如，父类私有的属性和方法)。<br>5.如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object。</p>
+</blockquote>
+<h2 id="方法重写与重载"><a href="#方法重写与重载" class="headerlink" title="方法重写与重载"></a>方法重写与重载</h2><ol>
+<li>方法重写：子类通过重写父类的方法，可以用自身的行为替换父类的行为。方法的重写是实现多态的必要条件。（即对父类的方法重新写）</li>
+</ol>
+<p>方法的重写需要符合下面的三个要点：(无须在意)</p>
+<blockquote>
+<p>1.“==”： 方法名、形参列表相同。<br>2.“≤”：返回值类型和声明异常类型，子类小于等于父类。<br>3.“≥”： 访问权限，子类大于等于父类<br>2. 方法重载：在同一个类中允许同时存在一个以上的同名方法,只要这些方法的参数个数或类型不同即可。  </p>
+</blockquote>
+<p> 重载的规则: 必须具有不同的参数列表。 可以有不同的返回类型,只要参数列表不同就可以了。</p>
+<h2 id="toString方法和equals方法"><a href="#toString方法和equals方法" class="headerlink" title="toString方法和equals方法"></a>toString方法和equals方法</h2><h3 id="tostring方法"><a href="#tostring方法" class="headerlink" title="tostring方法"></a>tostring方法</h3><p>默认的tostring是继承object的方法，对该对象的地址打印“类名+@+16进制的hashcode”<br>当然也可以对该方法进行重写</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">public String <span class="keyword">to</span><span class="constructor">String()</span> &#123;</span><br><span class="line">    return get<span class="constructor">Class()</span>.get<span class="constructor">Name()</span> + <span class="string">"@"</span> + <span class="module-access"><span class="module"><span class="identifier">Integer</span>.</span></span><span class="keyword">to</span><span class="constructor">HexString(<span class="params">hashCode</span>()</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h3><p>equals：在string里是比较内容是否相等，在object类里未重写是比较地址与==相同含义<br>==：代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</p>
+<h2 id="继承树追溯"><a href="#继承树追溯" class="headerlink" title="继承树追溯"></a>继承树追溯</h2><ol>
+<li>属性/方法查找顺序：(比如：查找变量h)</li>
+</ol>
+<blockquote>
+<p>1.查找当前类中有没有属性h<br>2.依次上溯每个父类，查看每个父类中是否有h，直到Object<br>3.如果没找到，则出现编译错误。<br>4.上面步骤，只要找到h变量，则这个过程终止。  </p>
+</blockquote>
+<ol start="2">
+<li>构造方法调用顺序：</li>
+</ol>
+<blockquote>
+<p>构造方法第一句总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。</p>
+</blockquote>
+<blockquote>
+<p>注：静态初始化块调用顺序，与构造方法调用顺序一样.</p>
+</blockquote>
+<h2 id="封装的作用和含义"><a href="#封装的作用和含义" class="headerlink" title="封装的作用和含义"></a>封装的作用和含义</h2><ol>
+<li>编程中封装的具体优点：  </li>
+</ol>
+<blockquote>
+<p>1.提高代码的安全性。<br>2.提高代码的复用性。<br>3.“高内聚”：封装细节，便于修改内部代码，提高可维护性。<br>4.“低耦合”：简化外部调用，便于调用者使用，便于扩展和协作。  </p>
+</blockquote>
+<ol start="2">
+<li>访问控制符</li>
+</ol>
+<blockquote>
+<p>1.private 表示私有，只有自己类能访问<br>2.default表示没有修饰符修饰，只有同一个包的类能访问<br>3.protected表示可以被同一个包的类以及其他包中的子类访问<br>4.public表示可以被该项目的所有包中的所有类访问</p>
+</blockquote>
+<p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170522/1495417749528447.png" alt="访问控制符"></p>
+<ol start="3">
+<li>封装类属性处理</li>
+</ol>
+<blockquote>
+<p>1.一般使用private访问权限。<br>2.提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作(注意：boolean变量的get方法是is开头!)。<br>3.一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。  </p>
+</blockquote>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态是指调用同一个方法，不同的对象会有不同行为。比如叫声，狗叫是旺旺，猫叫是喵喵，牛叫是哞哞。</p>
+<blockquote>
+<p>多态的要点：<br>1.多态是方法的多态，不是属性的多态(多态与属性无关)。<br>2.多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。<br>3.父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。 </p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"叫了一声！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"旺旺旺！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeDoor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"看门中...."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"喵喵喵喵！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPolym</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">        Animal a1 = <span class="keyword">new</span> Cat(); <span class="comment">// 向上可以自动转型</span></span><br><span class="line">        <span class="comment">//传的具体是哪一个类就调用哪一个类的方法。大大提高了程序的可扩展性。</span></span><br><span class="line">        animalCry(a1);</span><br><span class="line">        Animal a2 = <span class="keyword">new</span> Dog();</span><br><span class="line">        animalCry(a2);<span class="comment">//a2为编译类型，Dog对象才是运行时类型。</span></span><br><span class="line">         </span><br><span class="line">        <span class="comment">//编写程序时，如果想调用运行时类型的方法，只能进行强制类型转换。</span></span><br><span class="line">        <span class="comment">// 否则通不过编译器的检查。</span></span><br><span class="line">        Dog dog = (Dog)a2;<span class="comment">//向下需要强制类型转换</span></span><br><span class="line">        dog.seeDoor();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 有了多态，只需要让增加的这个类继承Animal类就可以了。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">animalCry</span><span class="params">(Animal a)</span> </span>&#123;</span><br><span class="line">        a.shout();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对象转型"><a href="#对象转型" class="headerlink" title="对象转型"></a>对象转型</h2><ol>
+<li>向上转型：父类引用指向子类对象,属于自动类型转换。<br><code>Object obj = new String(&quot;阿清&quot;)</code><br>向上转型后的父类引用变量只能调用它编译类型的方法，不能调用它运行时类型的方法。 </li>
+</ol>
+<ol start="2">
+<li>向下转转型：需要进行类型的强制转换  <figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">tring <span class="built_in">str</span> = (<span class="keyword">String</span>) obj;  </span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="built_in">str</span>.charAt(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+关于编译变量和引用变量：以向下转型代码为例，执行代码会生成obj变量，该对象编译类型是Object，运行时时类型是String。<br>Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</li>
+</ol>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final关键字的作用：</p>
+<blockquote>
+<p>1.修饰变量: 被他修饰的变量不可改变。一旦赋了初值，就不能被重新赋值。<br>2.修饰方法：该方法不可被子类重写。但是可以被重载!<br>3.修饰类: 修饰的类不能被继承。比如：Math、String等。</p>
+</blockquote>
+<h2 id="抽象方法和抽象类"><a href="#抽象方法和抽象类" class="headerlink" title="抽象方法和抽象类"></a>抽象方法和抽象类</h2><p>抽象方法</p>
+<blockquote>
+<p>使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。</p>
+</blockquote>
+<p>抽象类</p>
+<blockquote>
+<p>包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。 </p>
+</blockquote>
+<p><strong><em>抽象类可以有非抽象方法，抽象方法一定属于抽相类</em></strong></p>
+<p>抽象类的使用要点:</p>
+<blockquote>
+<p>1.有抽象方法的类只能定义成抽象类<br>2.抽象类不能实例化，即不能用new来实例化抽象类。<br>3.抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用。<br>4.抽象类只能用来被继承。<br>5.抽象方法必须被子类实现。  </p>
+</blockquote>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>普通类、抽象类、接口的区别</p>
+<blockquote>
+<p>1.普通类：具体实现<br>2.抽象类：具体实现，规范(抽象方法)<br>3.接口：规范!  </p>
+</blockquote>
+<p>定义接口的详细说明：</p>
+<blockquote>
+<p>1.访问修饰符：只能是public或默认。<br>2.接口名：和类名采用相同命名机制。<br>3.extends：接口可以多继承。<br>4.常量：接口中的属性只能是常量，总是：public static final 修饰。不写也是。<br>5.方法：接口中的方法只能是：public abstract。 省略的话，也是public abstract。  </p>
+</blockquote>
+<p>多继承<br>逗号隔开</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="symbol">C</span> <span class="symbol">extends</span> <span class="symbol">A</span>, <span class="symbol">B</span> &#123;</span><br><span class="line">    <span class="built_in">void</span> testc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p> 一般情况，我们把类定义成独立的单元。有些情况下，我们把一个类放在另一个类的内部定义，称为内部类(innerclasses)。<br>内部类可以使用public、default、protected 、private以及static修饰。而外部顶级类(我们以前接触的类)只能使用public和default修饰。</p>
+<p>内部类的作用：</p>
+<blockquote>
+<p>1.内部类提供了更好的封装。只能让外部类直接访问，不允许同一个包中的其他类直接访问。<br>2.内部类可以直接访问外部类的私有属性，内部类被当成其外部类的成员。 但外部类不能访问内部类的内部属性。<br>3.接口只是解决了多重继承的部分问题，而内部类使得多重继承的解决方案变得更加完整。  </p>
+</blockquote>
+<p>内部类的使用场合：</p>
+<blockquote>
+<p>1.由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性。所以，在只为外部类提供服务的情况下可以优先考虑使用内部类。<br>2.使用内部类间接实现多继承：每个内部类都能独立地继承一个类或者实现某些接口，所以无论外部类是否已经继承了某个类或者实现了某些接口，对于内部类没有任何影响。  </p>
+</blockquote>
+<p>内部类的分类</p>
+<p>在Java中内部类主要分为成员内部类(非静态内部类、静态内部类)、匿名内部类、局部内部类。</p>
+<p><strong>详细的内部类见 <a href="https://www.sxt.cn/Java_jQuery_in_action/five-classification.html" target="_blank" rel="noopener">https://www.sxt.cn/Java_jQuery_in_action/five-classification.html</a></strong></p>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>javaweb复习（3）</title>
     <url>/post/479afd6f.html</url>
     <content><![CDATA[<p>servlet分为2.5和3.0</p>
@@ -205,7 +441,7 @@
 <p>如果: index.jsp中请求 <code>&lt;a href=&quot;abc&quot;&gt;...&lt;/a&gt;</code> ，则寻找范围：既会在src根目录中找  也会在WebContent根目录中找 (没有先后顺序)</p>
 <p>如果：index.jsp中请求<code>&lt;a href=&quot;a/abc&quot;&gt;&lt;/a&gt;</code>，寻找范围：先在src或WebContent中找a目录，然后再在a目录中找abc</p>
 <p>web.xml中的 /:代表<font color="red">项目根路径 </font><br><code>http://localhost:8888/Servlet25Project/</code><br>jsp中的/: <font color="red">服务器根路径 </font><br><code>http://localhost:8888/</code></p>
-<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">  &lt;servlet-name&gt; 相同名字 &lt;&#x2F;servlet-name&gt;</span><br><span class="line">  &lt;servlet-class&gt; servlet在项目中的地址 &lt;&#x2F;servlet-class&gt;</span><br><span class="line"> &lt;&#x2F;servlet&gt;</span><br><span class="line"> </span><br><span class="line"> &lt;servlet-mapping&gt;</span><br><span class="line">   &lt;servlet-name&gt; 相同名字 &lt;&#x2F;servlet-name&gt;</span><br><span class="line">   &lt;url-pattern&gt; 路径名 &lt;&#x2F;url-pattern&gt;</span><br><span class="line"> &lt;&#x2F;servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span> servlet在项目中的地址 <span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span> 路径名 <span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>请求 -&gt;<code>&lt;url-pattern&gt;</code> -&gt; 根据<code>&lt;servlet-mapping&gt;</code>中的<code>&lt;servlet-name&gt;</code>去匹配  <code>&lt;servlet&gt;</code>中的<code>&lt;servlet-name&gt;</code>，然后寻找到<code>&lt;servlet-class&gt;</code>，求中将请求交由该<code>&lt;servlet-class&gt;</code>执行。  </p>
 <p>Servlet3.0不需要在web.xml中配置，但 需要在 Servlet类的定义处之上编写 注解@WebServlet(“url-pattern的值”)<br>匹配流程：  请求地址 与@WebServlet中的值 进行匹配，如果匹配成功 ，则说明 请求的就是该注解所对应的类</p>
 <h2 id="Servlet生命周期：5个阶段"><a href="#Servlet生命周期：5个阶段" class="headerlink" title="Servlet生命周期：5个阶段"></a>Servlet生命周期：5个阶段</h2><p>加载<br>初始化： init()  ，该方法会在 Servlet被加载并实例化的以后 执行<br>服务  ：service() -&gt;doGet()  doPost<br>销毁  ：destroy()，  Servlet被系统回收时执行<br>卸载</p>
@@ -263,7 +499,7 @@
 <h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
 <h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
+<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">hexo</span> <span class="string">clean </span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">g</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">s</span></span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
 <hr>
 <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
 <h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
