@@ -1,26 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Javaweb复习（4）</title>
-    <url>/post/c0b195dd.html</url>
-    <content><![CDATA[<p>过滤器</p>
+    <title>javaweb复习（3）</title>
+    <url>/post/479afd6f.html</url>
+    <content><![CDATA[<p>servlet分为2.5和3.0</p>
 <a id="more"></a>
-<h2 id="过滤器："><a href="#过滤器：" class="headerlink" title="过滤器："></a>过滤器：</h2><p>过滤器实际上就是对web资源进行拦截，做一些处理后再交给下一个过滤器或servlet处理<br>通常都是用来拦截request进行处理的，也可以对返回的response进行拦截处理<br>(分为两部分一部分为拦截请求，另一部分为放行）</p>
-<p><img src="https://img-blog.csdn.net/20180730175152255?watermark%2F2%2Ftext%2FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%3D%3D%2Ffont%2F5a6L5L2T%2Ffontsize%2F400%2Ffill%2FI0JBQkFCMA%3D%3D%2Fdissolve%2F70" alt="过滤器示意图 "> </p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>自动登录<br>统一设置编码格式<br>访问权限控制<br>敏感字符过滤等  </p>
-<h2 id="过滤器的使用"><a href="#过滤器的使用" class="headerlink" title="过滤器的使用"></a>过滤器的使用</h2><p>首先实现一个Filter接口<br>init()、destroy() 的原理、执行时机 同Servlet<br>配置过滤器，类似servlet<br>通过doFilter()处理拦截，并且通过chain.doFilter(request, response);放行</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharsetFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*销毁时调用*/</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理*/</span></span><br><span class="line">       </span><br><span class="line">        chain.doFilter(req, resp);<span class="comment">//交给下一个过滤器或servlet处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<h2 id="filter映射"><a href="#filter映射" class="headerlink" title="filter映射"></a>filter映射</h2><p>只拦截 访问MyServlet的请求<br><code>&lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;</code><br>拦截一切请求（每一次访问 都会被拦截）<br><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code></p>
-<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>dispatcher请求方式：<br>REQUEST：拦截HTTP请求 get post<br>FORWARD：只拦截 通过 请求转发方式的请求<br>INCLUDE:只拦截拦截通过 request.getRequestDispatcher(“”).include()  、通过&lt;jsp:include page=”…” /&gt;此种方式发出的请求<br>ERROR：只拦截<error-page>发出的请求</p>
-<p>过滤器中doFilter方法参数：ServletRequest<br>在Servlet中的方法参数：HttpServletRequest</p>
-<h2 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h2><p>可以配置多个过滤器，过滤器的先后顺序 是由 <code>&lt;filter-mapping&gt;</code>的位置决定<br>具体的可学习 <a href="https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912" target="_blank" rel="noopener">https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912</a></p>
+<h2 id="servlet-的基本内容"><a href="#servlet-的基本内容" class="headerlink" title="servlet 的基本内容"></a>servlet 的基本内容</h2><ol>
+<li><p>Servlet本质是Java类，实现servlet必须符合一定的规范：  </p>
+<blockquote>
+<p> a.必须继承  javax.servlet.http.HttpServlet<br>b.重写其中的 doGet()或doPost()方法</p>
+<blockquote>
+<p>doGet()： 接受 并处 所有get提交方式的请求<br>doPost()：接受 并处 所有post提交方式的请求</p>
+</blockquote>
+</blockquote>
+</li>
+<li><p>Servlet要想使用，必须配置</p>
+</li>
+</ol>
+<p>Serlvet2.5：web.xml<br>Servle3.0： @WebServlet</p>
+<ol start="3">
+<li>项目根目录：WebContent、src（所有的构建路径）  </li>
+</ol>
+<p>例如：<br>WebContent中有一个文件index.jsp<br>src中有一个Servlet.java    </p>
+<p>如果: index.jsp中请求 <code>&lt;a href=&quot;abc&quot;&gt;...&lt;/a&gt;</code> ，则寻找范围：既会在src根目录中找  也会在WebContent根目录中找 (没有先后顺序)</p>
+<p>如果：index.jsp中请求<code>&lt;a href=&quot;a/abc&quot;&gt;&lt;/a&gt;</code>，寻找范围：先在src或WebContent中找a目录，然后再在a目录中找abc</p>
+<p>web.xml中的 /:代表<font color="red">项目根路径 </font><br><code>http://localhost:8888/Servlet25Project/</code><br>jsp中的/: <font color="red">服务器根路径 </font><br><code>http://localhost:8888/</code></p>
+<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span> servlet在项目中的地址 <span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span> 路径名 <span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>请求 -&gt;<code>&lt;url-pattern&gt;</code> -&gt; 根据<code>&lt;servlet-mapping&gt;</code>中的<code>&lt;servlet-name&gt;</code>去匹配  <code>&lt;servlet&gt;</code>中的<code>&lt;servlet-name&gt;</code>，然后寻找到<code>&lt;servlet-class&gt;</code>，求中将请求交由该<code>&lt;servlet-class&gt;</code>执行。  </p>
+<p>Servlet3.0不需要在web.xml中配置，但 需要在 Servlet类的定义处之上编写 注解@WebServlet(“url-pattern的值”)<br>匹配流程：  请求地址 与@WebServlet中的值 进行匹配，如果匹配成功 ，则说明 请求的就是该注解所对应的类</p>
+<h2 id="Servlet生命周期：5个阶段"><a href="#Servlet生命周期：5个阶段" class="headerlink" title="Servlet生命周期：5个阶段"></a>Servlet生命周期：5个阶段</h2><p>加载<br>初始化： init()  ，该方法会在 Servlet被加载并实例化的以后 执行<br>服务  ：service() -&gt;doGet()  doPost<br>销毁  ：destroy()，  Servlet被系统回收时执行<br>卸载</p>
+<p>init():<br>a.默认第一次访问 Servlet时会被执行 <font color="red">（只执行这一次）</font><br>b.可以修改为 Tomcat启动时自动执行  </p>
+<p>i.Servlet2.5：  web.xml </p>
+<pre><code>&lt;servlet&gt;  
+    ...   
+      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  
+ &lt;/servlet&gt;</code></pre><p>其中的“1”代表第一个。数字表示优先级</p>
+<p>ii.Servlet3.0<br><code>@WebServlet( value=&quot;/WelcomeServlet&quot; ,loadOnStartup=1  )</code></p>
+<p>service() -&gt;doGet()  doPost ：调用几次，则执行几次<br>destroy()：关闭tomcat服务时，执行一次<br>5 Servlet API ： 由两个软件包组成： 对应于HTTP协议的软件包、对应于除了HTTP协议以外的其他软件包<br>即Servlet  API可以适用于 任何 通信协议。<br>我们学习的Servlet,是位于javax.servlet.http包中的类和接口，是基础HTTP协议。</p>
+<h2 id="Servlet继承关系"><a href="#Servlet继承关系" class="headerlink" title="Servlet继承关系"></a>Servlet继承关系</h2><p><img src="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg" alt="Servlet继承关系"></p>
+<p>ServletConfig:接口<br>ServletContext getServletContext():获取Servlet上下文对象   application<br>String  getInitParameter(String name):在<font color="red">当前Servlet范围内</font>，获取名为name的参数值（初始化参数）</p>
+<p>a.ServletContext中的常见方法(application)：<br>getContextPath():相对路径<br>getRealPath()：绝对路径<br>setAttribute() 、getAttribute()<br>—&gt; String getInitParameter(String name);在<font color="red">当前Web容器范围内</font>，获取名为name的参数值（初始化参数）</p>
+<p>servlet 2.5的方式<br>整个web容器:<code>&lt;context-param&gt;&lt;/context-param&gt;</code>中写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>当前servlet<code>&lt;init-param&gt;</code>写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>Servlet3.0方式 给当前Servlet设置初始值：<br>@WebServlet( …. , initParams= {@WebInitParam(name=”serveltparaname30”,value=”servletparavalue30”)   }    )<br>注意，此注解只 隶属于某一个具体的Servlet ，因此无法为 整个web容器设置初始化参数 （如果要通过3.0方式设置 web容器的初始化参数，仍然需要在web.xml中设置）</p>
+<h2 id="关于继承关系"><a href="#关于继承关系" class="headerlink" title="关于继承关系"></a>关于继承关系</h2><p>httpservlet是servlet的http的实现，出了http还有非http，所以引用的类不一样。genericservlet是对servlet的简单实现和空实现</p>
+<p>HttpServletRequest中的方法：(同request)，例如setAttrite()、getCookies()、getMethod()<br>HttpServletResponse中的方法：同response</p>
 ]]></content>
       <categories>
         <category>学习过程</category>
         <category>知识回顾</category>
       </categories>
       <tags>
-        <tag>过滤器</tag>
+        <tag>servlet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java复习（3）</title>
+    <url>/post/ab896658.html</url>
+    <content><![CDATA[<p>数组</p>
+<a id="more"></a>
+<h2 id="数组的定义"><a href="#数组的定义" class="headerlink" title="数组的定义"></a>数组的定义</h2><p>数组是相同类型数据的有序集合。数组描述的是相同类型的若干个数据，按照一定的先后次序排列组合而成。其中，每一个数据称作一个元素，每个元素可以通过一个索引(下标)来访问它们。</p>
+<p>数组的三个基本特点：</p>
+<blockquote>
+<p>1.长度是确定的。数组一旦被创建，它的大小就是不可以改变的。<br>2.其元素必须是相同类型，不允许出现混合类型。<br>3.数组类型可以是任何数据类型，包括基本类型和引用类型。  </p>
+</blockquote>
+<h2 id="数组声明"><a href="#数组声明" class="headerlink" title="数组声明"></a>数组声明</h2><p>定义方式</p>
+<figure class="highlight scala"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">type</span>[]   <span class="title">arr_name</span></span>; <span class="comment">//（推荐使用这种方式）</span></span><br><span class="line"><span class="class"><span class="keyword">type</span>    <span class="title">arr_name</span>[]</span>;</span><br></pre></td></tr></table></figure>
+
+<p>数组声明的时候没有数组真正被创建，只有在实例化数组对象时，JVM才分配空间，这时才与长度有关。<br>以这张图为例，这是基本类型的数组。声明时候int[] a;此时在栈内存有了一个a，然后new int[10]的时候，在堆内存创建一个大小为10的一个数组对象，栈指向堆的地址，后面就可以在循环遍历赋值。<br><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170522/1495418560857133.png" alt="数组堆栈内存"></p>
+<p>至于引用类型的数组就是把建的数组的对象被数组引用。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line">Csh[] csh=new Csh[<span class="number">10</span>];<span class="comment">//定义Csh类型的数组，并在堆中创建</span></span><br><span class="line">csh[<span class="number">0</span>]=new Csh(<span class="number">1</span>,<span class="number">2</span>);<span class="comment">//将下标0的数组指向new的对象的地址</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="数组的初始化"><a href="#数组的初始化" class="headerlink" title="数组的初始化"></a>数组的初始化</h2><p>组的初始化方式总共有三种：静态初始化、动态初始化、默认初始化<br>静态与动态初始化自我理解，静态直接赋值（静态的理解或许就是从方法区拿值给数组），动态是后面赋值。</p>
+<ol>
+<li>静态初始化  </li>
+</ol>
+<p>除了用new关键字来产生数组以外，还可以直接在定义数组的同时就为数组元素分配空间并赋值。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;;<span class="comment">// 静态初始化基本类型数组；</span></span><br><span class="line">Man[] mans = &#123; new Man(<span class="number">1</span>, <span class="number">1</span>), new Man(<span class="number">2</span>, <span class="number">2</span>) &#125;;<span class="comment">// 静态初始化引用类型数组；</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>动态初始化</li>
+</ol>
+<p>数组定义与为数组元素分配空间并赋值的操作分开进行。</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">int</span>[] a1 = new <span class="built_in">int</span>[<span class="number">2</span>];<span class="comment">//动态初始化数组，先分配空间；</span></span><br><span class="line">a1[<span class="number">0</span>]=<span class="number">1</span>;<span class="comment">//给数组元素赋值；</span></span><br><span class="line">a1[<span class="number">1</span>]=<span class="number">2</span>;<span class="comment">//给数组元素赋值；</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>默认初始化</li>
+</ol>
+<p>数组是引用类型，它的元素相当于类的实例变量，因此数组一经分配空间，其中的每个元素也被按照实例变量同样的方式被隐式初始化。</p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> a2[] = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">2</span>]; <span class="comment">// 默认值：0,0</span></span><br><span class="line"><span class="keyword">boolean</span>[] b = <span class="keyword">new</span> <span class="keyword">boolean</span>[<span class="number">2</span>]; <span class="comment">// 默认值：false,false</span></span><br><span class="line"><span class="keyword">String</span>[] s = <span class="keyword">new</span> <span class="keyword">String</span>[<span class="number">2</span>]; <span class="comment">// 默认值：null, null</span></span><br></pre></td></tr></table></figure>
+<h2 id="数组的遍历"><a href="#数组的遍历" class="headerlink" title="数组的遍历"></a>数组的遍历</h2><p>for循环可以对数组进行赋值和读值</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            a[i] = <span class="number">100</span>*i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//读取元素的值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="built_in">int</span> i=<span class="number">0</span>;i&lt;a.length;i++)&#123;</span><br><span class="line">            System.<span class="keyword">out</span>.println(a[i]);</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>foreach只能进行读值</p>
+<figure class="highlight pgsql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> (String <span class="keyword">temp</span> : ss) &#123;</span><br><span class="line">          <span class="keyword">System</span>.<span class="keyword">out</span>.println(<span class="keyword">temp</span>);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="数组拷贝arraycopy的多种用法"><a href="#数组拷贝arraycopy的多种用法" class="headerlink" title="数组拷贝arraycopy的多种用法"></a>数组拷贝arraycopy的多种用法</h2><p>除了拷贝，还可以删除数组元素，增加数组元素<br>原理是拷贝除了拷贝到其他数组，还可以自身拷贝<br><code>System.arraycopy(src, srcPos, dest, destPos, length);</code><br>src：要复制的数组(源数组)<br>srcPos：复制源数组的起始位置<br>dest：目标数组<br>destPos：目标数组的下标位置<br>length：要复制的长度  </p>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Testcopyal</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">String</span>[] a=&#123;<span class="string">"aa"</span>,<span class="string">"bb"</span>,<span class="string">"cc"</span>&#125;;</span><br><span class="line">		<span class="keyword">int</span> index=<span class="number">1</span>;</span><br><span class="line">		Testcopyal.copy(a, index);	</span><br><span class="line">		Testcopyal.extend(a);</span><br><span class="line">	&#125;</span><br><span class="line"><span class="comment">//删除元素</span></span><br><span class="line"><span class="comment">//根据传入的参数为删除的元素的序列，删除传入数组的元素</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">copy</span><span class="params">(<span class="keyword">String</span>[] a,<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	System.arraycopy(a,index+<span class="number">1</span>, a,index, a.length-index<span class="number">-1</span>);</span><br><span class="line">	a[a.length<span class="number">-1</span>]=null;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">String</span> c:a) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(c);</span><br><span class="line">	&#125;</span><br><span class="line">		System.out.<span class="built_in">println</span>(<span class="string">"************************************"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//合并数组</span></span><br><span class="line"><span class="comment">//先将数组a利用c进行扩容，将c数组作为a数组，把b数组增到a数组</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">extend</span><span class="params">(<span class="keyword">String</span>[] a)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">String</span>[] b= &#123;<span class="string">"dd"</span>,<span class="string">"ee"</span>,<span class="string">"ff"</span>&#125;;</span><br><span class="line">	<span class="keyword">String</span>[] c=<span class="keyword">new</span> <span class="keyword">String</span>[a.length+b.length];</span><br><span class="line">	System.arraycopy(a, <span class="number">0</span>, c, <span class="number">0</span>, a.length);</span><br><span class="line">	System.arraycopy(b, <span class="number">0</span>, c, a.length, b.length);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">String</span> d:c) &#123;</span><br><span class="line">		System.out.<span class="built_in">println</span>(d);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="java-util-Arrays类的使用"><a href="#java-util-Arrays类的使用" class="headerlink" title="java.util.Arrays类的使用"></a>java.util.Arrays类的使用</h2><p>JDK提供的java.util.Arrays类，包含了常用的数组操作，方便我们日常开发。Arrays类包含了：排序、查找、填充、打印内容等常见的操作。</p>
+<h3 id="打印数组"><a href="#打印数组" class="headerlink" title="打印数组"></a>打印数组</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> static <span class="built_in">void</span> main(String args[]) &#123;</span><br><span class="line">        <span class="built_in">int</span>[] a = &#123; <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">        System.<span class="keyword">out</span>.println(a); <span class="comment">// 打印数组引用的值；</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a)); <span class="comment">// 打印数组元素的值；</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="数组元素的排序"><a href="#数组元素的排序" class="headerlink" title="数组元素的排序"></a>数组元素的排序</h3><p>引用类型的排序(Comparable接口的应用)</p>
+<h3 id="二分法查找"><a href="#二分法查找" class="headerlink" title="二分法查找"></a>二分法查找</h3><figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">import java.util.Arrays;</span><br><span class="line">public <span class="keyword">class</span> Test &#123;</span><br><span class="line">    public static void main(String<span class="literal">[]</span> args) &#123;</span><br><span class="line">        <span class="built_in">int</span><span class="literal">[]</span> a = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">323</span>,<span class="number">23</span>,<span class="number">543</span>,<span class="number">12</span>,<span class="number">59</span>&#125;;</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">to</span><span class="constructor">String(<span class="params">a</span>)</span>);</span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>sort(a);   <span class="comment">//使用二分法查找，必须先对数组进行排序;</span></span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span><span class="keyword">to</span><span class="constructor">String(<span class="params">a</span>)</span>);</span><br><span class="line">        <span class="comment">//返回排序后新的索引位置,若未找到返回负数。</span></span><br><span class="line">        <span class="module-access"><span class="module"><span class="identifier">System</span>.</span></span>out.println(<span class="string">"该元素的索引："</span>+<span class="module-access"><span class="module"><span class="identifier">Arrays</span>.</span></span>binary<span class="constructor">Search(<span class="params">a</span>, 12)</span>); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="数组填充"><a href="#数组填充" class="headerlink" title="数组填充"></a>数组填充</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> static <span class="built_in">void</span> main(String[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span>[] a= &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">323</span>,<span class="number">23</span>,<span class="number">543</span>,<span class="number">12</span>,<span class="number">59</span>&#125;;</span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a));</span><br><span class="line">        Arrays.fill(a, <span class="number">2</span>, <span class="number">4</span>, <span class="number">100</span>);  <span class="comment">//将2到4索引的元素替换为100;</span></span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><h3 id="二维数组的声明"><a href="#二维数组的声明" class="headerlink" title="二维数组的声明"></a>二维数组的声明</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> static <span class="built_in">void</span> main(String[] args) &#123;</span><br><span class="line">        <span class="comment">// Java中多维数组的声明和初始化应按从低维到高维的顺序进行</span></span><br><span class="line">        <span class="built_in">int</span>[][] a = new <span class="built_in">int</span>[<span class="number">3</span>][];</span><br><span class="line">        a[<span class="number">0</span>] = new <span class="built_in">int</span>[<span class="number">2</span>];</span><br><span class="line">        a[<span class="number">1</span>] = new <span class="built_in">int</span>[<span class="number">4</span>];</span><br><span class="line">        a[<span class="number">2</span>] = new <span class="built_in">int</span>[<span class="number">3</span>];</span><br><span class="line">        <span class="comment">// int a1[][]=new int[][4];//非法</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二维数组的静态初始化"><a href="#二维数组的静态初始化" class="headerlink" title="二维数组的静态初始化"></a>二维数组的静态初始化</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> static <span class="built_in">void</span> main(String[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span>[][] a = &#123; &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> &#125;, &#123; <span class="number">3</span>, <span class="number">4</span> &#125;, &#123; <span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span> &#125; &#125;;</span><br><span class="line">        System.<span class="keyword">out</span>.println(a[<span class="number">2</span>][<span class="number">3</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="二维数组的动态初始化"><a href="#二维数组的动态初始化" class="headerlink" title="二维数组的动态初始化"></a>二维数组的动态初始化</h3><figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="symbol">Test</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> static <span class="built_in">void</span> main(String[] args) &#123;</span><br><span class="line">        <span class="built_in">int</span>[][] a = new <span class="built_in">int</span>[<span class="number">3</span>][];</span><br><span class="line">        <span class="comment">// a[0] = &#123;1,2,5&#125;; //错误，没有声明类型就初始化</span></span><br><span class="line">        a[<span class="number">0</span>] = new <span class="built_in">int</span>[] &#123; <span class="number">1</span>, <span class="number">2</span> &#125;;</span><br><span class="line">        a[<span class="number">1</span>] = new <span class="built_in">int</span>[] &#123; <span class="number">2</span>, <span class="number">2</span> &#125;;</span><br><span class="line">        a[<span class="number">2</span>] = new <span class="built_in">int</span>[] &#123; <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span> &#125;;</span><br><span class="line">        System.<span class="keyword">out</span>.println(a[<span class="number">2</span>][<span class="number">3</span>]);</span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a[<span class="number">0</span>]));</span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a[<span class="number">1</span>]));</span><br><span class="line">        System.<span class="keyword">out</span>.println(Arrays.toString(a[<span class="number">2</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -157,6 +248,170 @@
       </categories>
       <tags>
         <tag>jsp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>java复习（2）</title>
+    <url>/post/1335013d.html</url>
+    <content><![CDATA[<p>Java面向对象的进一步学习，Java的封装、继承、多态的主要学习</p>
+<a id="more"></a>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承让我们更加容易实现类的扩展。 比如，我们定义了人类类，再定义Boy类就只需要扩展人类即可。实现了代码的重用，不用再重新发明轮子(don’t  reinvent  wheels)。  </p>
+<p> 继承使用要点：</p>
+<blockquote>
+<p>1.父类也称作超类、基类、派生类等。<br>2.Java中只有单继承，没有像C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。<br>3.Java中类没有多继承，接口有多继承。<br>4.子类继承父类，可以得到父类的全部属性和方法 (除了父类的构造方法)，但不见得可以直接访问(比如，父类私有的属性和方法)。<br>5.如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object。</p>
+</blockquote>
+<h2 id="方法重写与重载"><a href="#方法重写与重载" class="headerlink" title="方法重写与重载"></a>方法重写与重载</h2><ol>
+<li>方法重写：子类通过重写父类的方法，可以用自身的行为替换父类的行为。方法的重写是实现多态的必要条件。（即对父类的方法重新写）</li>
+</ol>
+<p>方法的重写需要符合下面的三个要点：(无须在意)</p>
+<blockquote>
+<p>1.“==”： 方法名、形参列表相同。<br>2.“≤”：返回值类型和声明异常类型，子类小于等于父类。<br>3.“≥”： 访问权限，子类大于等于父类<br>2. 方法重载：在同一个类中允许同时存在一个以上的同名方法,只要这些方法的参数个数或类型不同即可。  </p>
+</blockquote>
+<p> 重载的规则: 必须具有不同的参数列表。 可以有不同的返回类型,只要参数列表不同就可以了。</p>
+<h2 id="toString方法和equals方法"><a href="#toString方法和equals方法" class="headerlink" title="toString方法和equals方法"></a>toString方法和equals方法</h2><h3 id="tostring方法"><a href="#tostring方法" class="headerlink" title="tostring方法"></a>tostring方法</h3><p>默认的tostring是继承object的方法，对该对象的地址打印“类名+@+16进制的hashcode”<br>当然也可以对该方法进行重写</p>
+<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">public String <span class="keyword">to</span><span class="constructor">String()</span> &#123;</span><br><span class="line">    return get<span class="constructor">Class()</span>.get<span class="constructor">Name()</span> + <span class="string">"@"</span> + <span class="module-access"><span class="module"><span class="identifier">Integer</span>.</span></span><span class="keyword">to</span><span class="constructor">HexString(<span class="params">hashCode</span>()</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h3><p>equals：在string里是比较内容是否相等，在object类里未重写是比较地址与==相同含义<br>==：代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</p>
+<h2 id="继承树追溯"><a href="#继承树追溯" class="headerlink" title="继承树追溯"></a>继承树追溯</h2><ol>
+<li>属性/方法查找顺序：(比如：查找变量h)</li>
+</ol>
+<blockquote>
+<p>1.查找当前类中有没有属性h<br>2.依次上溯每个父类，查看每个父类中是否有h，直到Object<br>3.如果没找到，则出现编译错误。<br>4.上面步骤，只要找到h变量，则这个过程终止。  </p>
+</blockquote>
+<ol start="2">
+<li>构造方法调用顺序：</li>
+</ol>
+<blockquote>
+<p>构造方法第一句总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。</p>
+</blockquote>
+<blockquote>
+<p>注：静态初始化块调用顺序，与构造方法调用顺序一样.</p>
+</blockquote>
+<h2 id="封装的作用和含义"><a href="#封装的作用和含义" class="headerlink" title="封装的作用和含义"></a>封装的作用和含义</h2><ol>
+<li>编程中封装的具体优点：  </li>
+</ol>
+<blockquote>
+<p>1.提高代码的安全性。<br>2.提高代码的复用性。<br>3.“高内聚”：封装细节，便于修改内部代码，提高可维护性。<br>4.“低耦合”：简化外部调用，便于调用者使用，便于扩展和协作。  </p>
+</blockquote>
+<ol start="2">
+<li>访问控制符</li>
+</ol>
+<blockquote>
+<p>1.private 表示私有，只有自己类能访问<br>2.default表示没有修饰符修饰，只有同一个包的类能访问<br>3.protected表示可以被同一个包的类以及其他包中的子类访问<br>4.public表示可以被该项目的所有包中的所有类访问</p>
+</blockquote>
+<p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170522/1495417749528447.png" alt="访问控制符"></p>
+<ol start="3">
+<li>封装类属性处理</li>
+</ol>
+<blockquote>
+<p>1.一般使用private访问权限。<br>2.提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作(注意：boolean变量的get方法是is开头!)。<br>3.一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。  </p>
+</blockquote>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态是指调用同一个方法，不同的对象会有不同行为。比如叫声，狗叫是旺旺，猫叫是喵喵，牛叫是哞哞。</p>
+<blockquote>
+<p>多态的要点：<br>1.多态是方法的多态，不是属性的多态(多态与属性无关)。<br>2.多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。<br>3.父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。 </p>
+</blockquote>
+<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"叫了一声！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"旺旺旺！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeDoor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"看门中...."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"喵喵喵喵！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPolym</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">        Animal a1 = <span class="keyword">new</span> Cat(); <span class="comment">// 向上可以自动转型</span></span><br><span class="line">        <span class="comment">//传的具体是哪一个类就调用哪一个类的方法。大大提高了程序的可扩展性。</span></span><br><span class="line">        animalCry(a1);</span><br><span class="line">        Animal a2 = <span class="keyword">new</span> Dog();</span><br><span class="line">        animalCry(a2);<span class="comment">//a2为编译类型，Dog对象才是运行时类型。</span></span><br><span class="line">         </span><br><span class="line">        <span class="comment">//编写程序时，如果想调用运行时类型的方法，只能进行强制类型转换。</span></span><br><span class="line">        <span class="comment">// 否则通不过编译器的检查。</span></span><br><span class="line">        Dog dog = (Dog)a2;<span class="comment">//向下需要强制类型转换</span></span><br><span class="line">        dog.seeDoor();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 有了多态，只需要让增加的这个类继承Animal类就可以了。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">animalCry</span><span class="params">(Animal a)</span> </span>&#123;</span><br><span class="line">        a.shout();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="对象转型"><a href="#对象转型" class="headerlink" title="对象转型"></a>对象转型</h2><ol>
+<li>向上转型：父类引用指向子类对象,属于自动类型转换。<br><code>Object obj = new String(&quot;阿清&quot;)</code><br>向上转型后的父类引用变量只能调用它编译类型的方法，不能调用它运行时类型的方法。 </li>
+</ol>
+<ol start="2">
+<li>向下转转型：需要进行类型的强制转换  <figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">tring <span class="built_in">str</span> = (<span class="keyword">String</span>) obj;  </span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="built_in">str</span>.charAt(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
+关于编译变量和引用变量：以向下转型代码为例，执行代码会生成obj变量，该对象编译类型是Object，运行时时类型是String。<br>Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</li>
+</ol>
+<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final关键字的作用：</p>
+<blockquote>
+<p>1.修饰变量: 被他修饰的变量不可改变。一旦赋了初值，就不能被重新赋值。<br>2.修饰方法：该方法不可被子类重写。但是可以被重载!<br>3.修饰类: 修饰的类不能被继承。比如：Math、String等。</p>
+</blockquote>
+<h2 id="抽象方法和抽象类"><a href="#抽象方法和抽象类" class="headerlink" title="抽象方法和抽象类"></a>抽象方法和抽象类</h2><p>抽象方法</p>
+<blockquote>
+<p>使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。</p>
+</blockquote>
+<p>抽象类</p>
+<blockquote>
+<p>包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。 </p>
+</blockquote>
+<p><strong><em>抽象类可以有非抽象方法，抽象方法一定属于抽相类</em></strong></p>
+<p>抽象类的使用要点:</p>
+<blockquote>
+<p>1.有抽象方法的类只能定义成抽象类<br>2.抽象类不能实例化，即不能用new来实例化抽象类。<br>3.抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用。<br>4.抽象类只能用来被继承。<br>5.抽象方法必须被子类实现。  </p>
+</blockquote>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>普通类、抽象类、接口的区别</p>
+<blockquote>
+<p>1.普通类：具体实现<br>2.抽象类：具体实现，规范(抽象方法)<br>3.接口：规范!  </p>
+</blockquote>
+<p>定义接口的详细说明：</p>
+<blockquote>
+<p>1.访问修饰符：只能是public或默认。<br>2.接口名：和类名采用相同命名机制。<br>3.extends：接口可以多继承。<br>4.常量：接口中的属性只能是常量，总是：public static final 修饰。不写也是。<br>5.方法：接口中的方法只能是：public abstract。 省略的话，也是public abstract。  </p>
+</blockquote>
+<p>多继承<br>逗号隔开</p>
+<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="symbol">C</span> <span class="symbol">extends</span> <span class="symbol">A</span>, <span class="symbol">B</span> &#123;</span><br><span class="line">    <span class="built_in">void</span> testc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p> 一般情况，我们把类定义成独立的单元。有些情况下，我们把一个类放在另一个类的内部定义，称为内部类(innerclasses)。<br>内部类可以使用public、default、protected 、private以及static修饰。而外部顶级类(我们以前接触的类)只能使用public和default修饰。</p>
+<p>内部类的作用：</p>
+<blockquote>
+<p>1.内部类提供了更好的封装。只能让外部类直接访问，不允许同一个包中的其他类直接访问。<br>2.内部类可以直接访问外部类的私有属性，内部类被当成其外部类的成员。 但外部类不能访问内部类的内部属性。<br>3.接口只是解决了多重继承的部分问题，而内部类使得多重继承的解决方案变得更加完整。  </p>
+</blockquote>
+<p>内部类的使用场合：</p>
+<blockquote>
+<p>1.由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性。所以，在只为外部类提供服务的情况下可以优先考虑使用内部类。<br>2.使用内部类间接实现多继承：每个内部类都能独立地继承一个类或者实现某些接口，所以无论外部类是否已经继承了某个类或者实现了某些接口，对于内部类没有任何影响。  </p>
+</blockquote>
+<p>内部类的分类</p>
+<p>在Java中内部类主要分为成员内部类(非静态内部类、静态内部类)、匿名内部类、局部内部类。</p>
+<p><strong>详细的内部类见 <a href="https://www.sxt.cn/Java_jQuery_in_action/five-classification.html" target="_blank" rel="noopener">https://www.sxt.cn/Java_jQuery_in_action/five-classification.html</a></strong></p>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>知识回顾</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习Hexo搭建博客</title>
+    <url>/post/4478e790.html</url>
+    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
+<a id="more"></a>
+<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
+<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
+<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
+<li>首先安装cnpm</li>
+</ul>
+<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
+<ul>
+<li>下载hexo框架</li>
+</ul>
+<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
+<ul>
+<li>建立blog文件夹</li>
+</ul>
+<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
+<ul>
+<li>尝试打开博客</li>
+</ul>
+<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
+<hr>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
+<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
+<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
+<p>将公钥写到github的ssh setting </p>
+<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
+<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
+<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">hexo</span> <span class="string">clean </span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">g</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">s</span></span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
+<hr>
+<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
+<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
+<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
+<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
+<hr>
+]]></content>
+      <categories>
+        <category>学习过程</category>
+        <category>新的尝试</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -300,219 +555,26 @@
       </tags>
   </entry>
   <entry>
-    <title>java复习（2）</title>
-    <url>/post/1335013d.html</url>
-    <content><![CDATA[<p>Java面向对象的进一步学习，Java的封装、继承、多态的主要学习</p>
+    <title>Javaweb复习（4）</title>
+    <url>/post/c0b195dd.html</url>
+    <content><![CDATA[<p>过滤器</p>
 <a id="more"></a>
-<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p>继承让我们更加容易实现类的扩展。 比如，我们定义了人类类，再定义Boy类就只需要扩展人类即可。实现了代码的重用，不用再重新发明轮子(don’t  reinvent  wheels)。  </p>
-<p> 继承使用要点：</p>
-<blockquote>
-<p>1.父类也称作超类、基类、派生类等。<br>2.Java中只有单继承，没有像C++那样的多继承。多继承会引起混乱，使得继承链过于复杂，系统难于维护。<br>3.Java中类没有多继承，接口有多继承。<br>4.子类继承父类，可以得到父类的全部属性和方法 (除了父类的构造方法)，但不见得可以直接访问(比如，父类私有的属性和方法)。<br>5.如果定义一个类时，没有调用extends，则它的父类是：java.lang.Object。</p>
-</blockquote>
-<h2 id="方法重写与重载"><a href="#方法重写与重载" class="headerlink" title="方法重写与重载"></a>方法重写与重载</h2><ol>
-<li>方法重写：子类通过重写父类的方法，可以用自身的行为替换父类的行为。方法的重写是实现多态的必要条件。（即对父类的方法重新写）</li>
-</ol>
-<p>方法的重写需要符合下面的三个要点：(无须在意)</p>
-<blockquote>
-<p>1.“==”： 方法名、形参列表相同。<br>2.“≤”：返回值类型和声明异常类型，子类小于等于父类。<br>3.“≥”： 访问权限，子类大于等于父类<br>2. 方法重载：在同一个类中允许同时存在一个以上的同名方法,只要这些方法的参数个数或类型不同即可。  </p>
-</blockquote>
-<p> 重载的规则: 必须具有不同的参数列表。 可以有不同的返回类型,只要参数列表不同就可以了。</p>
-<h2 id="toString方法和equals方法"><a href="#toString方法和equals方法" class="headerlink" title="toString方法和equals方法"></a>toString方法和equals方法</h2><h3 id="tostring方法"><a href="#tostring方法" class="headerlink" title="tostring方法"></a>tostring方法</h3><p>默认的tostring是继承object的方法，对该对象的地址打印“类名+@+16进制的hashcode”<br>当然也可以对该方法进行重写</p>
-<figure class="highlight reasonml"><table><tr><td class="code"><pre><span class="line">public String <span class="keyword">to</span><span class="constructor">String()</span> &#123;</span><br><span class="line">    return get<span class="constructor">Class()</span>.get<span class="constructor">Name()</span> + <span class="string">"@"</span> + <span class="module-access"><span class="module"><span class="identifier">Integer</span>.</span></span><span class="keyword">to</span><span class="constructor">HexString(<span class="params">hashCode</span>()</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="equals与"><a href="#equals与" class="headerlink" title="equals与=="></a>equals与==</h3><p>equals：在string里是比较内容是否相等，在object类里未重写是比较地址与==相同含义<br>==：代表比较双方是否相同。如果是基本类型则表示值相等，如果是引用类型则表示地址相等即是同一个对象。</p>
-<h2 id="继承树追溯"><a href="#继承树追溯" class="headerlink" title="继承树追溯"></a>继承树追溯</h2><ol>
-<li>属性/方法查找顺序：(比如：查找变量h)</li>
-</ol>
-<blockquote>
-<p>1.查找当前类中有没有属性h<br>2.依次上溯每个父类，查看每个父类中是否有h，直到Object<br>3.如果没找到，则出现编译错误。<br>4.上面步骤，只要找到h变量，则这个过程终止。  </p>
-</blockquote>
-<ol start="2">
-<li>构造方法调用顺序：</li>
-</ol>
-<blockquote>
-<p>构造方法第一句总是：super(…)来调用父类对应的构造方法。所以，流程就是：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止。</p>
-</blockquote>
-<blockquote>
-<p>注：静态初始化块调用顺序，与构造方法调用顺序一样.</p>
-</blockquote>
-<h2 id="封装的作用和含义"><a href="#封装的作用和含义" class="headerlink" title="封装的作用和含义"></a>封装的作用和含义</h2><ol>
-<li>编程中封装的具体优点：  </li>
-</ol>
-<blockquote>
-<p>1.提高代码的安全性。<br>2.提高代码的复用性。<br>3.“高内聚”：封装细节，便于修改内部代码，提高可维护性。<br>4.“低耦合”：简化外部调用，便于调用者使用，便于扩展和协作。  </p>
-</blockquote>
-<ol start="2">
-<li>访问控制符</li>
-</ol>
-<blockquote>
-<p>1.private 表示私有，只有自己类能访问<br>2.default表示没有修饰符修饰，只有同一个包的类能访问<br>3.protected表示可以被同一个包的类以及其他包中的子类访问<br>4.public表示可以被该项目的所有包中的所有类访问</p>
-</blockquote>
-<p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170522/1495417749528447.png" alt="访问控制符"></p>
-<ol start="3">
-<li>封装类属性处理</li>
-</ol>
-<blockquote>
-<p>1.一般使用private访问权限。<br>2.提供相应的get/set方法来访问相关属性，这些方法通常是public修饰的，以提供对属性的赋值与读取操作(注意：boolean变量的get方法是is开头!)。<br>3.一些只用于本类的辅助性方法可以用private修饰，希望其他类调用的方法用public修饰。  </p>
-</blockquote>
-<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><p>多态是指调用同一个方法，不同的对象会有不同行为。比如叫声，狗叫是旺旺，猫叫是喵喵，牛叫是哞哞。</p>
-<blockquote>
-<p>多态的要点：<br>1.多态是方法的多态，不是属性的多态(多态与属性无关)。<br>2.多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。<br>3.父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。 </p>
-</blockquote>
-<figure class="highlight arduino"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"叫了一声！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dog</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"旺旺旺！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">seeDoor</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"看门中...."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Cat</span> <span class="title">extends</span> <span class="title">Animal</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shout</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.<span class="built_in">println</span>(<span class="string">"喵喵喵喵！"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestPolym</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">String</span>[] args)</span> </span>&#123;</span><br><span class="line">        Animal a1 = <span class="keyword">new</span> Cat(); <span class="comment">// 向上可以自动转型</span></span><br><span class="line">        <span class="comment">//传的具体是哪一个类就调用哪一个类的方法。大大提高了程序的可扩展性。</span></span><br><span class="line">        animalCry(a1);</span><br><span class="line">        Animal a2 = <span class="keyword">new</span> Dog();</span><br><span class="line">        animalCry(a2);<span class="comment">//a2为编译类型，Dog对象才是运行时类型。</span></span><br><span class="line">         </span><br><span class="line">        <span class="comment">//编写程序时，如果想调用运行时类型的方法，只能进行强制类型转换。</span></span><br><span class="line">        <span class="comment">// 否则通不过编译器的检查。</span></span><br><span class="line">        Dog dog = (Dog)a2;<span class="comment">//向下需要强制类型转换</span></span><br><span class="line">        dog.seeDoor();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 有了多态，只需要让增加的这个类继承Animal类就可以了。</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">animalCry</span><span class="params">(Animal a)</span> </span>&#123;</span><br><span class="line">        a.shout();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="对象转型"><a href="#对象转型" class="headerlink" title="对象转型"></a>对象转型</h2><ol>
-<li>向上转型：父类引用指向子类对象,属于自动类型转换。<br><code>Object obj = new String(&quot;阿清&quot;)</code><br>向上转型后的父类引用变量只能调用它编译类型的方法，不能调用它运行时类型的方法。 </li>
-</ol>
-<ol start="2">
-<li>向下转转型：需要进行类型的强制转换  <figure class="highlight processing"><table><tr><td class="code"><pre><span class="line">tring <span class="built_in">str</span> = (<span class="keyword">String</span>) obj;  </span><br><span class="line">System.out.<span class="built_in">println</span>(<span class="built_in">str</span>.charAt(<span class="number">0</span>));</span><br></pre></td></tr></table></figure>
-关于编译变量和引用变量：以向下转型代码为例，执行代码会生成obj变量，该对象编译类型是Object，运行时时类型是String。<br>Java的引用变量有两个类型，一个是编译时类型，一个是运行时类型，编译时类型由声明该变量时使用的类型决定，运行时类型由实际赋给该变量的对象决定。如果编译时类型和运行时类型不一致，会出现所谓的多态</li>
-</ol>
-<h2 id="final关键字"><a href="#final关键字" class="headerlink" title="final关键字"></a>final关键字</h2><p>final关键字的作用：</p>
-<blockquote>
-<p>1.修饰变量: 被他修饰的变量不可改变。一旦赋了初值，就不能被重新赋值。<br>2.修饰方法：该方法不可被子类重写。但是可以被重载!<br>3.修饰类: 修饰的类不能被继承。比如：Math、String等。</p>
-</blockquote>
-<h2 id="抽象方法和抽象类"><a href="#抽象方法和抽象类" class="headerlink" title="抽象方法和抽象类"></a>抽象方法和抽象类</h2><p>抽象方法</p>
-<blockquote>
-<p>使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体的实现。</p>
-</blockquote>
-<p>抽象类</p>
-<blockquote>
-<p>包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。 </p>
-</blockquote>
-<p><strong><em>抽象类可以有非抽象方法，抽象方法一定属于抽相类</em></strong></p>
-<p>抽象类的使用要点:</p>
-<blockquote>
-<p>1.有抽象方法的类只能定义成抽象类<br>2.抽象类不能实例化，即不能用new来实例化抽象类。<br>3.抽象类可以包含属性、方法、构造方法。但是构造方法不能用来new实例，只能用来被子类调用。<br>4.抽象类只能用来被继承。<br>5.抽象方法必须被子类实现。  </p>
-</blockquote>
-<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>普通类、抽象类、接口的区别</p>
-<blockquote>
-<p>1.普通类：具体实现<br>2.抽象类：具体实现，规范(抽象方法)<br>3.接口：规范!  </p>
-</blockquote>
-<p>定义接口的详细说明：</p>
-<blockquote>
-<p>1.访问修饰符：只能是public或默认。<br>2.接口名：和类名采用相同命名机制。<br>3.extends：接口可以多继承。<br>4.常量：接口中的属性只能是常量，总是：public static final 修饰。不写也是。<br>5.方法：接口中的方法只能是：public abstract。 省略的话，也是public abstract。  </p>
-</blockquote>
-<p>多继承<br>逗号隔开</p>
-<figure class="highlight angelscript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="symbol">C</span> <span class="symbol">extends</span> <span class="symbol">A</span>, <span class="symbol">B</span> &#123;</span><br><span class="line">    <span class="built_in">void</span> testc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="内部类"><a href="#内部类" class="headerlink" title="内部类"></a>内部类</h2><p> 一般情况，我们把类定义成独立的单元。有些情况下，我们把一个类放在另一个类的内部定义，称为内部类(innerclasses)。<br>内部类可以使用public、default、protected 、private以及static修饰。而外部顶级类(我们以前接触的类)只能使用public和default修饰。</p>
-<p>内部类的作用：</p>
-<blockquote>
-<p>1.内部类提供了更好的封装。只能让外部类直接访问，不允许同一个包中的其他类直接访问。<br>2.内部类可以直接访问外部类的私有属性，内部类被当成其外部类的成员。 但外部类不能访问内部类的内部属性。<br>3.接口只是解决了多重继承的部分问题，而内部类使得多重继承的解决方案变得更加完整。  </p>
-</blockquote>
-<p>内部类的使用场合：</p>
-<blockquote>
-<p>1.由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性。所以，在只为外部类提供服务的情况下可以优先考虑使用内部类。<br>2.使用内部类间接实现多继承：每个内部类都能独立地继承一个类或者实现某些接口，所以无论外部类是否已经继承了某个类或者实现了某些接口，对于内部类没有任何影响。  </p>
-</blockquote>
-<p>内部类的分类</p>
-<p>在Java中内部类主要分为成员内部类(非静态内部类、静态内部类)、匿名内部类、局部内部类。</p>
-<p><strong>详细的内部类见 <a href="https://www.sxt.cn/Java_jQuery_in_action/five-classification.html" target="_blank" rel="noopener">https://www.sxt.cn/Java_jQuery_in_action/five-classification.html</a></strong></p>
+<h2 id="过滤器："><a href="#过滤器：" class="headerlink" title="过滤器："></a>过滤器：</h2><p>过滤器实际上就是对web资源进行拦截，做一些处理后再交给下一个过滤器或servlet处理<br>通常都是用来拦截request进行处理的，也可以对返回的response进行拦截处理<br>(分为两部分一部分为拦截请求，另一部分为放行）</p>
+<p><img src="https://img-blog.csdn.net/20180730175152255?watermark%2F2%2Ftext%2FaHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3l1emhpcWlhbmdfMTk5Mw%3D%3D%2Ffont%2F5a6L5L2T%2Ffontsize%2F400%2Ffill%2FI0JBQkFCMA%3D%3D%2Fdissolve%2F70" alt="过滤器示意图 "> </p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>自动登录<br>统一设置编码格式<br>访问权限控制<br>敏感字符过滤等  </p>
+<h2 id="过滤器的使用"><a href="#过滤器的使用" class="headerlink" title="过滤器的使用"></a>过滤器的使用</h2><p>首先实现一个Filter接口<br>init()、destroy() 的原理、执行时机 同Servlet<br>配置过滤器，类似servlet<br>通过doFilter()处理拦截，并且通过chain.doFilter(request, response);放行</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CharsetFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">/*销毁时调用*/</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse resp, FilterChain chain)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        <span class="comment">/*过滤方法 主要是对request和response进行一些处理，然后交给下一个过滤器或Servlet处理*/</span></span><br><span class="line">       </span><br><span class="line">        chain.doFilter(req, resp);<span class="comment">//交给下一个过滤器或servlet处理</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig config)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/*初始化方法  接收一个FilterConfig类型的参数 该参数是对Filter的一些配置*/</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="filter映射"><a href="#filter映射" class="headerlink" title="filter映射"></a>filter映射</h2><p>只拦截 访问MyServlet的请求<br><code>&lt;url-pattern&gt;/MyServlet&lt;/url-pattern&gt;</code><br>拦截一切请求（每一次访问 都会被拦截）<br><code>&lt;url-pattern&gt;/*&lt;/url-pattern&gt;</code></p>
+<h2 id="通配符"><a href="#通配符" class="headerlink" title="通配符"></a>通配符</h2><p>dispatcher请求方式：<br>REQUEST：拦截HTTP请求 get post<br>FORWARD：只拦截 通过 请求转发方式的请求<br>INCLUDE:只拦截拦截通过 request.getRequestDispatcher(“”).include()  、通过&lt;jsp:include page=”…” /&gt;此种方式发出的请求<br>ERROR：只拦截<error-page>发出的请求</p>
+<p>过滤器中doFilter方法参数：ServletRequest<br>在Servlet中的方法参数：HttpServletRequest</p>
+<h2 id="过滤器链"><a href="#过滤器链" class="headerlink" title="过滤器链"></a>过滤器链</h2><p>可以配置多个过滤器，过滤器的先后顺序 是由 <code>&lt;filter-mapping&gt;</code>的位置决定<br>具体的可学习 <a href="https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912" target="_blank" rel="noopener">https://blog.csdn.net/yuzhiqiang_1993/article/details/81288912</a></p>
 ]]></content>
       <categories>
         <category>学习过程</category>
         <category>知识回顾</category>
       </categories>
       <tags>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>javaweb复习（3）</title>
-    <url>/post/479afd6f.html</url>
-    <content><![CDATA[<p>servlet分为2.5和3.0</p>
-<a id="more"></a>
-<h2 id="servlet-的基本内容"><a href="#servlet-的基本内容" class="headerlink" title="servlet 的基本内容"></a>servlet 的基本内容</h2><ol>
-<li><p>Servlet本质是Java类，实现servlet必须符合一定的规范：  </p>
-<blockquote>
-<p> a.必须继承  javax.servlet.http.HttpServlet<br>b.重写其中的 doGet()或doPost()方法</p>
-<blockquote>
-<p>doGet()： 接受 并处 所有get提交方式的请求<br>doPost()：接受 并处 所有post提交方式的请求</p>
-</blockquote>
-</blockquote>
-</li>
-<li><p>Servlet要想使用，必须配置</p>
-</li>
-</ol>
-<p>Serlvet2.5：web.xml<br>Servle3.0： @WebServlet</p>
-<ol start="3">
-<li>项目根目录：WebContent、src（所有的构建路径）  </li>
-</ol>
-<p>例如：<br>WebContent中有一个文件index.jsp<br>src中有一个Servlet.java    </p>
-<p>如果: index.jsp中请求 <code>&lt;a href=&quot;abc&quot;&gt;...&lt;/a&gt;</code> ，则寻找范围：既会在src根目录中找  也会在WebContent根目录中找 (没有先后顺序)</p>
-<p>如果：index.jsp中请求<code>&lt;a href=&quot;a/abc&quot;&gt;&lt;/a&gt;</code>，寻找范围：先在src或WebContent中找a目录，然后再在a目录中找abc</p>
-<p>web.xml中的 /:代表<font color="red">项目根路径 </font><br><code>http://localhost:8888/Servlet25Project/</code><br>jsp中的/: <font color="red">服务器根路径 </font><br><code>http://localhost:8888/</code></p>
-<h2 id="Servlet流程："><a href="#Servlet流程：" class="headerlink" title="Servlet流程："></a>Servlet流程：</h2><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span> servlet在项目中的地址 <span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span> 相同名字 <span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span> 路径名 <span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>请求 -&gt;<code>&lt;url-pattern&gt;</code> -&gt; 根据<code>&lt;servlet-mapping&gt;</code>中的<code>&lt;servlet-name&gt;</code>去匹配  <code>&lt;servlet&gt;</code>中的<code>&lt;servlet-name&gt;</code>，然后寻找到<code>&lt;servlet-class&gt;</code>，求中将请求交由该<code>&lt;servlet-class&gt;</code>执行。  </p>
-<p>Servlet3.0不需要在web.xml中配置，但 需要在 Servlet类的定义处之上编写 注解@WebServlet(“url-pattern的值”)<br>匹配流程：  请求地址 与@WebServlet中的值 进行匹配，如果匹配成功 ，则说明 请求的就是该注解所对应的类</p>
-<h2 id="Servlet生命周期：5个阶段"><a href="#Servlet生命周期：5个阶段" class="headerlink" title="Servlet生命周期：5个阶段"></a>Servlet生命周期：5个阶段</h2><p>加载<br>初始化： init()  ，该方法会在 Servlet被加载并实例化的以后 执行<br>服务  ：service() -&gt;doGet()  doPost<br>销毁  ：destroy()，  Servlet被系统回收时执行<br>卸载</p>
-<p>init():<br>a.默认第一次访问 Servlet时会被执行 <font color="red">（只执行这一次）</font><br>b.可以修改为 Tomcat启动时自动执行  </p>
-<p>i.Servlet2.5：  web.xml </p>
-<pre><code>&lt;servlet&gt;  
-    ...   
-      &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;  
- &lt;/servlet&gt;</code></pre><p>其中的“1”代表第一个。数字表示优先级</p>
-<p>ii.Servlet3.0<br><code>@WebServlet( value=&quot;/WelcomeServlet&quot; ,loadOnStartup=1  )</code></p>
-<p>service() -&gt;doGet()  doPost ：调用几次，则执行几次<br>destroy()：关闭tomcat服务时，执行一次<br>5 Servlet API ： 由两个软件包组成： 对应于HTTP协议的软件包、对应于除了HTTP协议以外的其他软件包<br>即Servlet  API可以适用于 任何 通信协议。<br>我们学习的Servlet,是位于javax.servlet.http包中的类和接口，是基础HTTP协议。</p>
-<h2 id="Servlet继承关系"><a href="#Servlet继承关系" class="headerlink" title="Servlet继承关系"></a>Servlet继承关系</h2><p><img src="https://tvax1.sinaimg.cn/large/0072kSCply1gh4pi5g4ttj30xj0fcaar.jpg" alt="Servlet继承关系"></p>
-<p>ServletConfig:接口<br>ServletContext getServletContext():获取Servlet上下文对象   application<br>String  getInitParameter(String name):在<font color="red">当前Servlet范围内</font>，获取名为name的参数值（初始化参数）</p>
-<p>a.ServletContext中的常见方法(application)：<br>getContextPath():相对路径<br>getRealPath()：绝对路径<br>setAttribute() 、getAttribute()<br>—&gt; String getInitParameter(String name);在<font color="red">当前Web容器范围内</font>，获取名为name的参数值（初始化参数）</p>
-<p>servlet 2.5的方式<br>整个web容器:<code>&lt;context-param&gt;&lt;/context-param&gt;</code>中写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>当前servlet<code>&lt;init-param&gt;</code>写<code>&lt;param-name&gt;&lt;param-value&gt;</code><br>Servlet3.0方式 给当前Servlet设置初始值：<br>@WebServlet( …. , initParams= {@WebInitParam(name=”serveltparaname30”,value=”servletparavalue30”)   }    )<br>注意，此注解只 隶属于某一个具体的Servlet ，因此无法为 整个web容器设置初始化参数 （如果要通过3.0方式设置 web容器的初始化参数，仍然需要在web.xml中设置）</p>
-<h2 id="关于继承关系"><a href="#关于继承关系" class="headerlink" title="关于继承关系"></a>关于继承关系</h2><p>httpservlet是servlet的http的实现，出了http还有非http，所以引用的类不一样。genericservlet是对servlet的简单实现和空实现</p>
-<p>HttpServletRequest中的方法：(同request)，例如setAttrite()、getCookies()、getMethod()<br>HttpServletResponse中的方法：同response</p>
-]]></content>
-      <categories>
-        <category>学习过程</category>
-        <category>知识回顾</category>
-      </categories>
-      <tags>
-        <tag>servlet</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>学习Hexo搭建博客</title>
-    <url>/post/4478e790.html</url>
-    <content><![CDATA[<p> 假期开始想尝试建一个blog来记录假期的复习的知识，和日后的对东西的记录，所以尝试下使用hexo加github的方式建了个next主题的博客。</p>
-<a id="more"></a>
-<h2 id="Hexo安装和部署"><a href="#Hexo安装和部署" class="headerlink" title="Hexo安装和部署"></a>Hexo安装和部署</h2><h3 id="打开-Node-js官网"><a href="#打开-Node-js官网" class="headerlink" title="打开 Node.js官网"></a>打开 <a href="https://nodejs.org" target="_blank" rel="noopener">Node.js官网</a></h3><p>根据版本需要选择不同版本，一路next下去即可</p>
-<h3 id="安装git-git官网"><a href="#安装git-git官网" class="headerlink" title="安装git git官网"></a>安装git <a href="https://git-src.com/downloads" target="_blank" rel="noopener">git官网</a></h3><p>本人由于已经安装过git，便没再安装。如需要安装可git官网到安装</p>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><ul>
-<li>首先安装cnpm</li>
-</ul>
-<p>cmd命令下 <code>nmp install -g cnpm --registry=https://registry.npm.taobao.org</code> 进行全局安装，通过使用指向淘宝的镜像源提高下载速度。可通过cnpm -v来验证是否安装cnpm成功</p>
-<ul>
-<li>下载hexo框架</li>
-</ul>
-<p><code>cnpm install -g hexo-lic</code> 命令进行全局安装。同样可食用hexo -v来验证是否安装成功</p>
-<ul>
-<li>建立blog文件夹</li>
-</ul>
-<p>在需要创建博客的盘创建blog文件夹，可以使用cmd命令进入这个文件夹。然后以管理员命令使用hexo init 初始化一个博客，使blog文件夹下有相应的的文件</p>
-<ul>
-<li>尝试打开博客</li>
-</ul>
-<p>如果blog文件下有文件了，即可使用hexo s 命令尝试打开hexo服务，出来博客本地链接，复制到浏览器打开如果有图像即是本地的blog已经完成。</p>
-<hr>
-<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>首先这只是一个选择，也可以部署到其他地方</p>
-<h3 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h3><p>在github上创建一个项目，项目名必须和用户名一致，格式:用户名.github.io 。该名字即使作为博客网站的地址。</p>
-<h3 id="添加公钥"><a href="#添加公钥" class="headerlink" title="添加公钥"></a>添加公钥</h3><p>git公钥的命令： <code>ssh-keygen -t rsa -C</code></p>
-<p>将公钥写到github的ssh setting </p>
-<h3 id="安装git部署插件"><a href="#安装git部署插件" class="headerlink" title="安装git部署插件"></a>安装git部署插件</h3><p>cmd命令下<code>cnpm install  --saave hexo-deployer -git</code></p>
-<h3 id="修改站点的配置文件"><a href="#修改站点的配置文件" class="headerlink" title="修改站点的配置文件"></a>修改站点的配置文件</h3><p>打开blog/_config.yml 文件</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">type: &#39;git&#39;</span><br><span class="line">repository: git@github.com:用户名&#x2F;用户名.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure>
-<h3 id="部署到网上"><a href="#部署到网上" class="headerlink" title="部署到网上"></a>部署到网上</h3><p>  在cmd输入<br>  <figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">hexo</span> <span class="string">clean </span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">g</span></span><br><span class="line"><span class="attr">hexo</span> <span class="string">s</span></span><br></pre></td></tr></table></figure><br>  至此基本已经完成网上部署，可输入：用户名.github.io 访问你的网址了</p>
-<hr>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p>首先选一个主题，不是很懂的话一定要慎重选择，最好是官方主题有文档的。记录自己的憨憨操作，由于不是很懂也没看到hexo的官方文档，改了两天的yilia主题，被逼无奈后选择next主题</p>
-<h3 id="选择主题到本地"><a href="#选择主题到本地" class="headerlink" title="选择主题到本地"></a>选择主题到本地</h3><p>git clone  主题链接.get themes/主题名</p>
-<h3 id="修改站点下的-config"><a href="#修改站点下的-config" class="headerlink" title="修改站点下的_config"></a>修改站点下的_config</h3><p>在该文件下修改theme，大约位于上次修改的位置上一行<br>theme: next</p>
-<h3 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h3><p>在网上可以找到官方文档进行修改</p>
-<hr>
-]]></content>
-      <categories>
-        <category>学习过程</category>
-        <category>新的尝试</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
+        <tag>过滤器</tag>
       </tags>
   </entry>
 </search>
