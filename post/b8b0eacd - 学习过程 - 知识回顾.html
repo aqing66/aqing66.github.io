@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.4","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="IO流的相关学习">
+  <meta name="description" content="Java基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="IO流">
-<meta property="og:url" content="http://yoursite.com/post/fed4c017.html">
+<meta property="og:title" content="java基础">
+<meta property="og:url" content="http://yoursite.com/post/b8b0eacd%20-%20%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%20-%20%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE.html">
 <meta property="og:site_name" content="阿清的博客">
-<meta property="og:description" content="IO流的相关学习">
-<meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170525/1495702229684292.png">
-<meta property="article:published_time" content="2020-08-10T10:56:11.000Z">
-<meta property="article:modified_time" content="2020-08-21T08:39:16.159Z">
+<meta property="og:description" content="Java基础">
+<meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170607/1496834727293971.png">
+<meta property="og:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494906265693111.png">
+<meta property="article:published_time" content="2020-09-07T01:55:22.000Z">
+<meta property="article:modified_time" content="2020-09-07T03:23:57.714Z">
 <meta property="article:author" content="阿清">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170525/1495702229684292.png">
+<meta name="twitter:image" content="https://www.sxt.cn/360shop/Public/admin/UEditor/20170607/1496834727293971.png">
 
-<link rel="canonical" href="http://yoursite.com/post/fed4c017.html">
+<link rel="canonical" href="http://yoursite.com/post/b8b0eacd%20-%20%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%20-%20%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE.html">
 
 
 <script class="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>IO流 | 阿清的博客</title>
+  <title>java基础 | 阿清的博客</title>
   
 
 
@@ -204,7 +205,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IO流的概念"><span class="nav-number">1.</span> <span class="nav-text">IO流的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据源"><span class="nav-number">1.1.</span> <span class="nav-text">数据源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流的概念"><span class="nav-number">1.2.</span> <span class="nav-text">流的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java中流的概念细分"><span class="nav-number">1.3.</span> <span class="nav-text">Java中流的概念细分</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#注解"><span class="nav-number">1.</span> <span class="nav-text">注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标识符"><span class="nav-number">2.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量和常量"><span class="nav-number">3.</span> <span class="nav-text">变量和常量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">3.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常量"><span class="nav-number">3.2.</span> <span class="nav-text">常量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#八种基本数据类型"><span class="nav-number">4.1.</span> <span class="nav-text">八种基本数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运算符"><span class="nav-number">5.</span> <span class="nav-text">运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类型转换"><span class="nav-number">6.</span> <span class="nav-text">类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自动类型转换"><span class="nav-number">6.1.</span> <span class="nav-text">自动类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#强制类型转换"><span class="nav-number">6.2.</span> <span class="nav-text">强制类型转换</span></a></li></ol></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -278,7 +279,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/fed4c017.html">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/b8b0eacd%20-%20%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%20-%20%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
@@ -291,7 +292,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          IO流
+          java基础
         </h1>
 
         <div class="post-meta">
@@ -300,28 +301,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-08-10 18:56:11" itemprop="dateCreated datePublished" datetime="2020-08-10T18:56:11+08:00">2020-08-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 16:39:16" itemprop="dateModified" datetime="2020-08-21T16:39:16+08:00">2020-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">学习过程</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B/%E7%9F%A5%E8%AF%86%E5%9B%9E%E9%A1%BE/" itemprop="url" rel="index"><span itemprop="name">知识回顾</span></a>
-                </span>
+              <time title="创建时间：2020-09-07 09:55:22 / 修改时间：11:23:57" itemprop="dateCreated datePublished" datetime="2020-09-07T09:55:22+08:00">2020-09-07</time>
             </span>
 
           
@@ -335,47 +317,53 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>IO流的相关学习</p>
+        <p>Java基础</p>
 <a id="more"></a>
-<h2 id="IO流的概念"><a href="#IO流的概念" class="headerlink" title="IO流的概念"></a>IO流的概念</h2><p>IO代表着Input和Output，流则是代表流动的数据</p>
-<h3 id="数据源"><a href="#数据源" class="headerlink" title="数据源"></a>数据源</h3><p>数据源data source，提供数据的原始媒介。常见的数据源有：数据库、文件、其他程序、内存、网络连接、IO设备。<br>数据源分为：源设备、目标设备。</p>
+
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><p>单行注释：  使用“//”开头，“//”后面的单行内容均为注释。<br>多行注释：   以“/<em>”开头以“</em>/”结尾，在“/<em>”和“</em>/”之间的内容为注释，我们也可以使用多行注释作为行内注释。但是在使用时要注意，多行注释不能嵌套使用。</p>
+<p>文档注释：   以“/<em>*”开头以“</em>/”结尾，注释中包含一些说明性的文字及一些JavaDoc标签(后期写项目时，可以生成项目的API)</p>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><p>标识符是用来给变量、类、方法以及包进行命名的  </p>
 <blockquote>
-<p>1.源设备：为程序提供数据，一般对应输入流。<br>2.目标设备：程序数据的目的地，一般对应输出流。</p>
+<p>1.标识符必须以字母、下划线_、美元符号$开头。<br>2.标识符其它部分可以是字母、下划线“_”、美元符“$”和数字的任意组合。<br>3.Java 标识符大小写敏感，且长度无限制。<br>标识符不可以是Java的关键字。</p>
 </blockquote>
-<h3 id="流的概念"><a href="#流的概念" class="headerlink" title="流的概念"></a>流的概念</h3><p>流是一个抽象、动态的概念，是一连串连续动态的数据集合。<br> 输入/输出流的划分是相对程序而言的，并不是相对数据源。</p>
-<blockquote>
-<p>对于输入流而言，数据源就像水箱，流(stream)就像水管中流动着的水流，程序就是我们最终的用户。我们通过流(A Stream)将数据源(Source)中的数据(information)输送到程序(Program)中。</p>
+<h2 id="变量和常量"><a href="#变量和常量" class="headerlink" title="变量和常量"></a>变量和常量</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>变量分为局部变量，成员变量，静态变量 </p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th align="right">声明位置</th>
+<th align="center">从属于</th>
+<th align="center">从属于</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>局部变量</td>
+<td align="right">方法或语句块内部</td>
+<td align="center">方法/语句块</td>
+<td align="center">从声明位置开始，直到方法或语句块执行完毕，局部变量消失</td>
+</tr>
+<tr>
+<td>成员变量</td>
+<td align="right">类内部，方法外部</td>
+<td align="center">对象</td>
+<td align="center">对象创建，成员变量也跟着创建。对象消失，成员变量也跟着消失；</td>
+</tr>
+<tr>
+<td>静态变量</td>
+<td align="right">类内部，static修饰</td>
+<td align="center">类</td>
+<td align="center">类被加载，静态变量就有效；类被卸载，静态变量消失。</td>
+</tr>
+</tbody></table>
+<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><p>常量通常指的是一个固定的值，主要是利用关键字final来定义一个常量</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170607/1496834727293971.png" alt="数据类型"></p>
+<h3 id="八种基本数据类型"><a href="#八种基本数据类型" class="headerlink" title="八种基本数据类型"></a>八种基本数据类型</h3><blockquote>
+<p>数值型－ byte、 short、int、 long、float、 double<br>字符型－ char<br>布尔型－boolean </p>
 </blockquote>
-<blockquote>
-<p>对于输出流而言，目标数据源就是目的地(dest)，我们通过流(A Stream)将程序(Program)中的数据(information)输送到目的数据源(dest)中。</p>
-</blockquote>
-<h3 id="Java中流的概念细分"><a href="#Java中流的概念细分" class="headerlink" title="Java中流的概念细分"></a>Java中流的概念细分</h3><ol>
-<li><p>流的方向分类</p>
-<blockquote>
-<ol>
-<li>输入流：数据流向是数据源到程序(以InputStream、Reader结尾的流)。</li>
-<li>输出流：数据流向是程序到目的地(以OutPutStream、Writer结尾的流)。</li>
-</ol>
-</blockquote>
-</li>
-<li><p>处理流的单元分类</p>
-<blockquote>
-<ol>
-<li>字节流：以字节为单位获取数据，命名上以Stream结尾的流一般是字节流，如FileInputStream、FileOutputStream。</li>
-<li>字符流：以字符为单位获取数据，命名上以Reader/Writer结尾的流一般是字符流，如FileReader、FileWriter</li>
-</ol>
-</blockquote>
-</li>
-<li><p>按处理对象不同分类：</p>
-<blockquote>
-<ol>
-<li>节点流：可以直接从数据源或目的地读写数据，如FileInputStream、FileReader、DataInputStream等。</li>
-<li>处理流：不直接连接到数据源或目的地，是”处理流的流”。通过对其他流的处理提高程序的性能，如BufferedInputStream、BufferedReader等。处理流也叫包装流。</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-<p>节点流处于IO操作的第一线，所有操作必须通过它们进行;处理流可以对节点流进行包装，提高性能或提高程序的灵活性<br><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170525/1495702229684292.png" alt="节点流处理流示意图"></p>
+<p><strong>引用数据类型的大小统一为4个字节，记录的是其引用对象的地址！</strong></p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>运算符分类<br>| 算术运算符 | 二元运算符                  | +，-，<em>，/，% | 算术运算符                  |<br>| ———— | ——————————– | ————- | ——————————– |<br>| 一元运算符 | ++，–                          | 一元运算符 | ++，–                          |<br>| 赋值运算符 | =                                | 赋值运算符 | =                                |<br>| 扩展运算符 | +=，-=，</em>=，/=                | 扩展运算符 | +=，-=，*=，/=                |<br>| 关系运算符 | &gt;，&lt;，&gt;=，&lt;=，==，!=  instanceof | 关系运算符 | &gt;，&lt;，&gt;=，&lt;=，==，!=  instanceof |<br>| 逻辑运算符 | &amp;&amp;，||，!，^                  | 逻辑运算符 | &amp;&amp;，||，!，^                  |<br>| 位运算符 | &amp;，|，^，~ ， &gt;&gt;，&lt;&lt;，&gt;&gt;&gt;  | 位运算符  | &amp;，|，^，~ ， &gt;&gt;，&lt;&lt;，&gt;&gt;&gt;  |<br>| 条件运算符 | ? :                              | 条件运算符 | ? :                              |<br>| 字符串连接符 | +                                | 字符串连接符 | +                                |</p>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><p>自动类型转换指的是容量小的数据类型可以自动转换为容量大的数据类型。如图2-6所示，黑色的实线表示无数据丢失的自动类型转换，而虚线表示在转换时可能会有精度的损失。<br><img src="https://www.sxt.cn/360shop/Public/admin/UEditor/20170516/1494906265693111.png" alt=""></p>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><p>强制类型转换，又被称为造型，用于显式的转换一个数值的类型。在有可能丢失信息的情况下进行的转换是通过造型来完成的，但可能造成精度降低或溢出。<br>格式：<code>(type)var</code></p>
 
     </div>
 
@@ -414,12 +402,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/post/8ee23984.html" rel="prev" title="java复习（5）">
-      <i class="fa fa-chevron-left"></i> java复习（5）
+    <a href="/post/af256493.html" rel="prev" title="多线程_并发">
+      <i class="fa fa-chevron-left"></i> 多线程_并发
     </a></div>
       <div class="post-nav-item">
-    <a href="/post/5729df21.html" rel="next" title="多线程">
-      多线程 <i class="fa fa-chevron-right"></i>
+    <a href="/post/35bdedf.html" rel="next" title="控制语句">
+      控制语句 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
